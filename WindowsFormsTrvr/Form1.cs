@@ -17,6 +17,7 @@ namespace WindowsFormsTrvr
         int N, K, M;
 
         double min, max, difference;
+        bool isbutton2 = false;
 
         public Form1()
         {
@@ -134,6 +135,8 @@ namespace WindowsFormsTrvr
             K = int.Parse(textBox3.Text);
             intervals = new double[K];
             double[] expected_freq = new double[K];
+            isbutton2 = true;
+
 
             // Находим min и max
             min = array.Min();
@@ -195,64 +198,73 @@ namespace WindowsFormsTrvr
             }
             dispersia *= (1 / (double)(N - 1));
             label10.Text = dispersia.ToString();
-
             int i_moda = 0; // индекс интервала с модой
-            for (int i = 0; i < K; i++)
-            {
-                if (intervals[i] > intervals[i_moda]) i_moda = i;
-            }
-            moda = min + i_moda * difference + (difference / 2);
-            label11.Text = moda.ToString();
 
-            i_moda = 0; // крамер
-            for (int i = 1; i < K; i++)
-            {
-                if (intervals[i] > intervals[i_moda])
-                    i_moda = i;
-            }
-
-            double h = difference;
-            double f0 = (i_moda > 0) ? intervals[i_moda - 1] : 0;
-            double f1 = intervals[i_moda];
-            double f2 = (i_moda < K - 1) ? intervals[i_moda + 1] : 0;
-
-            double delta1 = f1 - f0;
-            double delta2 = f1 - f2;
-
-            moda = min + (i_moda + delta1 / (delta1 + delta2)) * h;
-            label14.Text = moda.ToString();
-
-            // Расчет медианы
+            // Расчет медианы по выборке
             Array.Sort(array);
             mediana_arr = (N % 2 == 1) ? array[N / 2] : (array[N / 2 - 1] + array[N / 2]) / 2;
-            label15.Text = mediana_arr.ToString();
+            label12.Text = mediana_arr.ToString();
 
-            // Расчет медианы по интервальному ряду
-            int totalCount = N;
-            int medianPosition = totalCount / 2;
-            int accumulatedFreq = 0;
-            int prevAccumulated = 0;
-            int medianIntervalIndex = 0;
-
-            // Находим медианный интервал
-            for (int i = 0; i < K; i++)
+            if (isbutton2 == true)
             {
-                accumulatedFreq += (int)intervals[i];
-                if (accumulatedFreq >= medianPosition)
+                for (int i = 0; i < K; i++)
                 {
-                    medianIntervalIndex = i;
-                    break;
+                    if (intervals[i] > intervals[i_moda]) i_moda = i;
                 }
-                prevAccumulated = accumulatedFreq;
+                moda = min + i_moda * difference + (difference / 2);
+                label11.Text = moda.ToString();
+
+                i_moda = 0; // крамер
+                for (int i = 1; i < K; i++)
+                {
+                    if (intervals[i] > intervals[i_moda])
+                        i_moda = i;
+                }
+                double h = difference;
+                double f0 = (i_moda > 0) ? intervals[i_moda - 1] : 0;
+                double f1 = intervals[i_moda];
+                double f2 = (i_moda < K - 1) ? intervals[i_moda + 1] : 0;
+
+                double delta1 = f1 - f0;
+                double delta2 = f1 - f2;
+
+                moda = min + (i_moda + delta1 / (delta1 + delta2)) * h;
+                label14.Text = moda.ToString();
+
+                
+
+                // Расчет медианы по интервальному ряду
+                int totalCount = N;
+                int medianPosition = totalCount / 2;
+                int accumulatedFreq = 0;
+                int prevAccumulated = 0;
+                int medianIntervalIndex = 0;
+
+                // Находим медианный интервал
+                for (int i = 0; i < K; i++)
+                {
+                    accumulatedFreq += (int)intervals[i];
+                    if (accumulatedFreq >= medianPosition)
+                    {
+                        medianIntervalIndex = i;
+                        break;
+                    }
+                    prevAccumulated = accumulatedFreq;
+                }
+
+                // Вычисляем медиану по формуле
+                double L = min + medianIntervalIndex * difference;
+                double S_prev = prevAccumulated;
+                double f_m = intervals[medianIntervalIndex];
+
+                mediana = L + h * ((totalCount / 2.0 - S_prev) / f_m);
+                label15.Text = mediana.ToString();
             }
 
-            // Вычисляем медиану по формуле
-            double L = min + medianIntervalIndex * difference;
-            double S_prev = prevAccumulated;
-            double f_m = intervals[medianIntervalIndex];
 
-            mediana = L + h * ((totalCount / 2.0 - S_prev) / f_m);
-            label12.Text = mediana.ToString();
+
+
+
 
         }
 
