@@ -65,7 +65,7 @@ namespace WindowsFormsTrvr
                 }
                 srednee /= N; // выборочное среднее
 
-                left_krit_85 = srednee - z_krit_85 * sigma / Math.Sqrt(N);
+                left_krit_85 = srednee - z_krit_85 * sigma / Math.Sqrt(5);
                 right_krit_85 = srednee + z_krit_85 * sigma / Math.Sqrt(N);
                 left_krit_95 = srednee - z_krit_95 * sigma / Math.Sqrt(N);
                 right_krit_95 = srednee + z_krit_95 * sigma / Math.Sqrt(N);
