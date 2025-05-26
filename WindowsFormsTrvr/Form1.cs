@@ -190,20 +190,20 @@ namespace WindowsFormsTrvr
                 srednee += array[i];
             }
             srednee *= (1 / (double)N);
-            label9.Text = srednee.ToString();
+            label9.Text = srednee.ToString("F4");
 
             for (int i = 0; i < N; i++)
             {
                 dispersia += Math.Pow((array[i] - srednee),2);
             }
             dispersia *= (1 / (double)(N - 1));
-            label10.Text = dispersia.ToString();
+            label10.Text = dispersia.ToString("F4");
             int i_moda = 0; // индекс интервала с модой
 
             // Расчет медианы по выборке
             Array.Sort(array);
             mediana_arr = (N % 2 == 1) ? array[N / 2] : (array[N / 2 - 1] + array[N / 2]) / 2;
-            label12.Text = mediana_arr.ToString();
+            label12.Text = mediana_arr.ToString("F4");
 
             if (isbutton2 == true)
             {
@@ -212,7 +212,7 @@ namespace WindowsFormsTrvr
                     if (intervals[i] > intervals[i_moda]) i_moda = i;
                 }
                 moda = min + i_moda * difference + (difference / 2);
-                label11.Text = moda.ToString();
+                label11.Text = moda.ToString("F4");
 
                 i_moda = 0; // крамер
                 for (int i = 1; i < K; i++)
@@ -229,7 +229,7 @@ namespace WindowsFormsTrvr
                 double delta2 = f1 - f2;
 
                 moda = min + (i_moda + delta1 / (delta1 + delta2)) * h;
-                label14.Text = moda.ToString();
+                label14.Text = moda.ToString("F4");
 
                 
 
@@ -258,7 +258,7 @@ namespace WindowsFormsTrvr
                 double f_m = intervals[medianIntervalIndex];
 
                 mediana = L + h * ((totalCount / 2.0 - S_prev) / f_m);
-                label15.Text = mediana.ToString();
+                label15.Text = mediana.ToString("F4");
             }
 
 
@@ -365,7 +365,18 @@ namespace WindowsFormsTrvr
 
         }
 
+
         private void interval_85_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label12_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label15_Click(object sender, EventArgs e)
         {
 
         }
