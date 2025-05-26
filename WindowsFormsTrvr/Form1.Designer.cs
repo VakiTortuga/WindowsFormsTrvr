@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -62,21 +62,29 @@
             this.label21 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
+            this.interval_85 = new System.Windows.Forms.Label();
+            this.left_krit_85 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.interval_95 = new System.Windows.Forms.Label();
+            this.left_krit_95 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.right_krit_95 = new System.Windows.Forms.Label();
+            this.right_krit_85 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
             // chart1
             // 
-            chartArea5.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea5);
-            legend5.Name = "Legend1";
-            this.chart1.Legends.Add(legend5);
-            this.chart1.Location = new System.Drawing.Point(12, 12);
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
+            this.chart1.Location = new System.Drawing.Point(12, 10);
             this.chart1.Name = "chart1";
-            series5.ChartArea = "ChartArea1";
-            series5.Legend = "Legend1";
-            series5.Name = "Series1";
-            this.chart1.Series.Add(series5);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart1.Series.Add(series1);
             this.chart1.Size = new System.Drawing.Size(669, 479);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
@@ -360,11 +368,94 @@
             this.textBox5.Size = new System.Drawing.Size(100, 20);
             this.textBox5.TabIndex = 30;
             // 
+            // interval_85
+            // 
+            this.interval_85.AutoSize = true;
+            this.interval_85.Location = new System.Drawing.Point(43, 544);
+            this.interval_85.Name = "interval_85";
+            this.interval_85.Size = new System.Drawing.Size(28, 13);
+            this.interval_85.TabIndex = 31;
+            this.interval_85.Text = "0.85";
+            // 
+            // left_krit_85
+            // 
+            this.left_krit_85.AutoSize = true;
+            this.left_krit_85.Location = new System.Drawing.Point(112, 544);
+            this.left_krit_85.Name = "left_krit_85";
+            this.left_krit_85.Size = new System.Drawing.Size(16, 13);
+            this.left_krit_85.TabIndex = 31;
+            this.left_krit_85.Text = "---";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(184, 544);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(41, 13);
+            this.label24.TabIndex = 31;
+            this.label24.Text = "label22";
+            this.label24.Click += new System.EventHandler(this.label24_Click);
+            // 
+            // interval_95
+            // 
+            this.interval_95.AutoSize = true;
+            this.interval_95.Location = new System.Drawing.Point(43, 563);
+            this.interval_95.Name = "interval_95";
+            this.interval_95.Size = new System.Drawing.Size(28, 13);
+            this.interval_95.TabIndex = 31;
+            this.interval_95.Text = "0.95";
+            // 
+            // left_krit_95
+            // 
+            this.left_krit_95.AutoSize = true;
+            this.left_krit_95.Location = new System.Drawing.Point(112, 563);
+            this.left_krit_95.Name = "left_krit_95";
+            this.left_krit_95.Size = new System.Drawing.Size(16, 13);
+            this.left_krit_95.TabIndex = 31;
+            this.left_krit_95.Text = "---";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(184, 563);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(41, 13);
+            this.label27.TabIndex = 31;
+            this.label27.Text = "label22";
+            // 
+            // right_krit_95
+            // 
+            this.right_krit_95.AutoSize = true;
+            this.right_krit_95.Location = new System.Drawing.Point(258, 563);
+            this.right_krit_95.Name = "right_krit_95";
+            this.right_krit_95.Size = new System.Drawing.Size(16, 13);
+            this.right_krit_95.TabIndex = 31;
+            this.right_krit_95.Text = "---";
+            this.right_krit_95.Click += new System.EventHandler(this.label28_Click);
+            // 
+            // right_krit_85
+            // 
+            this.right_krit_85.AutoSize = true;
+            this.right_krit_85.Location = new System.Drawing.Point(258, 544);
+            this.right_krit_85.Name = "right_krit_85";
+            this.right_krit_85.Size = new System.Drawing.Size(16, 13);
+            this.right_krit_85.TabIndex = 31;
+            this.right_krit_85.Text = "---";
+            this.right_krit_85.Click += new System.EventHandler(this.label28_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1149, 605);
+            this.Controls.Add(this.right_krit_85);
+            this.Controls.Add(this.right_krit_95);
+            this.Controls.Add(this.label27);
+            this.Controls.Add(this.left_krit_95);
+            this.Controls.Add(this.interval_95);
+            this.Controls.Add(this.label24);
+            this.Controls.Add(this.left_krit_85);
+            this.Controls.Add(this.interval_85);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.label21);
@@ -438,6 +529,14 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.Label interval_85;
+        private System.Windows.Forms.Label left_krit_85;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label interval_95;
+        private System.Windows.Forms.Label left_krit_95;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label right_krit_95;
+        private System.Windows.Forms.Label right_krit_85;
     }
 }
 
