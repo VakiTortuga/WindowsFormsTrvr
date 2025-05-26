@@ -69,6 +69,14 @@ namespace WindowsFormsTrvr
                 right_krit_85 = srednee + z_krit_85 * sigma / Math.Sqrt(N);
                 left_krit_95 = srednee - z_krit_95 * sigma / Math.Sqrt(N);
                 right_krit_95 = srednee + z_krit_95 * sigma / Math.Sqrt(N);
+
+                LeftKrit85.Text = left_krit_85.ToString("F4");
+                RightKrit85.Text = right_krit_85.ToString("F4");
+                LeftKrit95.Text = left_krit_95.ToString("F4");
+                RightKrit95.Text = right_krit_95.ToString("F4");
+                Srednee_85.Text = srednee.ToString("F4");
+                Srednee_95.Text = srednee.ToString("F4");
+
             }
 
             if (checkedListBox1.SelectedIndex == 2)

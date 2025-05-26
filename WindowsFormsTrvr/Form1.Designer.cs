@@ -63,13 +63,14 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.interval_85 = new System.Windows.Forms.Label();
-            this.left_krit_85 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
+            this.LeftKrit85 = new System.Windows.Forms.Label();
+            this.Srednee_85 = new System.Windows.Forms.Label();
             this.interval_95 = new System.Windows.Forms.Label();
-            this.left_krit_95 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.right_krit_95 = new System.Windows.Forms.Label();
-            this.right_krit_85 = new System.Windows.Forms.Label();
+            this.LeftKrit95 = new System.Windows.Forms.Label();
+            this.Srednee_95 = new System.Windows.Forms.Label();
+            this.RightKrit95 = new System.Windows.Forms.Label();
+            this.RightKrit85 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -371,90 +372,100 @@
             // interval_85
             // 
             this.interval_85.AutoSize = true;
-            this.interval_85.Location = new System.Drawing.Point(43, 544);
+            this.interval_85.Location = new System.Drawing.Point(47, 564);
             this.interval_85.Name = "interval_85";
             this.interval_85.Size = new System.Drawing.Size(28, 13);
             this.interval_85.TabIndex = 31;
             this.interval_85.Text = "0.85";
             // 
-            // left_krit_85
+            // LeftKrit85
             // 
-            this.left_krit_85.AutoSize = true;
-            this.left_krit_85.Location = new System.Drawing.Point(112, 544);
-            this.left_krit_85.Name = "left_krit_85";
-            this.left_krit_85.Size = new System.Drawing.Size(16, 13);
-            this.left_krit_85.TabIndex = 31;
-            this.left_krit_85.Text = "---";
+            this.LeftKrit85.AutoSize = true;
+            this.LeftKrit85.Location = new System.Drawing.Point(116, 564);
+            this.LeftKrit85.Name = "LeftKrit85";
+            this.LeftKrit85.Size = new System.Drawing.Size(16, 13);
+            this.LeftKrit85.TabIndex = 31;
+            this.LeftKrit85.Text = "---";
             // 
-            // label24
+            // Srednee_85
             // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(184, 544);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(41, 13);
-            this.label24.TabIndex = 31;
-            this.label24.Text = "label22";
-            this.label24.Click += new System.EventHandler(this.label24_Click);
+            this.Srednee_85.AutoSize = true;
+            this.Srednee_85.Location = new System.Drawing.Point(188, 564);
+            this.Srednee_85.Name = "Srednee_85";
+            this.Srednee_85.Size = new System.Drawing.Size(16, 13);
+            this.Srednee_85.TabIndex = 31;
+            this.Srednee_85.Text = "---";
+            this.Srednee_85.Click += new System.EventHandler(this.label24_Click);
             // 
             // interval_95
             // 
             this.interval_95.AutoSize = true;
-            this.interval_95.Location = new System.Drawing.Point(43, 563);
+            this.interval_95.Location = new System.Drawing.Point(47, 583);
             this.interval_95.Name = "interval_95";
             this.interval_95.Size = new System.Drawing.Size(28, 13);
             this.interval_95.TabIndex = 31;
             this.interval_95.Text = "0.95";
             // 
-            // left_krit_95
+            // LeftKrit95
             // 
-            this.left_krit_95.AutoSize = true;
-            this.left_krit_95.Location = new System.Drawing.Point(112, 563);
-            this.left_krit_95.Name = "left_krit_95";
-            this.left_krit_95.Size = new System.Drawing.Size(16, 13);
-            this.left_krit_95.TabIndex = 31;
-            this.left_krit_95.Text = "---";
+            this.LeftKrit95.AutoSize = true;
+            this.LeftKrit95.Location = new System.Drawing.Point(116, 583);
+            this.LeftKrit95.Name = "LeftKrit95";
+            this.LeftKrit95.Size = new System.Drawing.Size(16, 13);
+            this.LeftKrit95.TabIndex = 31;
+            this.LeftKrit95.Text = "---";
             // 
-            // label27
+            // Srednee_95
             // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(184, 563);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(41, 13);
-            this.label27.TabIndex = 31;
-            this.label27.Text = "label22";
+            this.Srednee_95.AutoSize = true;
+            this.Srednee_95.Location = new System.Drawing.Point(188, 583);
+            this.Srednee_95.Name = "Srednee_95";
+            this.Srednee_95.Size = new System.Drawing.Size(16, 13);
+            this.Srednee_95.TabIndex = 31;
+            this.Srednee_95.Text = "---";
             // 
-            // right_krit_95
+            // RightKrit95
             // 
-            this.right_krit_95.AutoSize = true;
-            this.right_krit_95.Location = new System.Drawing.Point(258, 563);
-            this.right_krit_95.Name = "right_krit_95";
-            this.right_krit_95.Size = new System.Drawing.Size(16, 13);
-            this.right_krit_95.TabIndex = 31;
-            this.right_krit_95.Text = "---";
-            this.right_krit_95.Click += new System.EventHandler(this.label28_Click);
+            this.RightKrit95.AutoSize = true;
+            this.RightKrit95.Location = new System.Drawing.Point(262, 583);
+            this.RightKrit95.Name = "RightKrit95";
+            this.RightKrit95.Size = new System.Drawing.Size(16, 13);
+            this.RightKrit95.TabIndex = 31;
+            this.RightKrit95.Text = "---";
+            this.RightKrit95.Click += new System.EventHandler(this.label28_Click);
             // 
-            // right_krit_85
+            // RightKrit85
             // 
-            this.right_krit_85.AutoSize = true;
-            this.right_krit_85.Location = new System.Drawing.Point(258, 544);
-            this.right_krit_85.Name = "right_krit_85";
-            this.right_krit_85.Size = new System.Drawing.Size(16, 13);
-            this.right_krit_85.TabIndex = 31;
-            this.right_krit_85.Text = "---";
-            this.right_krit_85.Click += new System.EventHandler(this.label28_Click);
+            this.RightKrit85.AutoSize = true;
+            this.RightKrit85.Location = new System.Drawing.Point(262, 564);
+            this.RightKrit85.Name = "RightKrit85";
+            this.RightKrit85.Size = new System.Drawing.Size(16, 13);
+            this.RightKrit85.TabIndex = 31;
+            this.RightKrit85.Text = "---";
+            this.RightKrit85.Click += new System.EventHandler(this.label28_Click);
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(46, 548);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(359, 13);
+            this.label22.TabIndex = 32;
+            this.label22.Text = "Доверительные интервалы для мат ожидания, известная дисперсия";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1149, 605);
-            this.Controls.Add(this.right_krit_85);
-            this.Controls.Add(this.right_krit_95);
-            this.Controls.Add(this.label27);
-            this.Controls.Add(this.left_krit_95);
+            this.Controls.Add(this.label22);
+            this.Controls.Add(this.RightKrit85);
+            this.Controls.Add(this.RightKrit95);
+            this.Controls.Add(this.Srednee_95);
+            this.Controls.Add(this.LeftKrit95);
             this.Controls.Add(this.interval_95);
-            this.Controls.Add(this.label24);
-            this.Controls.Add(this.left_krit_85);
+            this.Controls.Add(this.Srednee_85);
+            this.Controls.Add(this.LeftKrit85);
             this.Controls.Add(this.interval_85);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.textBox4);
@@ -530,13 +541,14 @@
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Label interval_85;
-        private System.Windows.Forms.Label left_krit_85;
-        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label LeftKrit85;
+        private System.Windows.Forms.Label Srednee_85;
         private System.Windows.Forms.Label interval_95;
-        private System.Windows.Forms.Label left_krit_95;
-        private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.Label right_krit_95;
-        private System.Windows.Forms.Label right_krit_85;
+        private System.Windows.Forms.Label LeftKrit95;
+        private System.Windows.Forms.Label Srednee_95;
+        private System.Windows.Forms.Label RightKrit95;
+        private System.Windows.Forms.Label RightKrit85;
+        private System.Windows.Forms.Label label22;
     }
 }
 
