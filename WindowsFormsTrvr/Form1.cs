@@ -74,8 +74,8 @@ namespace WindowsFormsTrvr
                 RightKrit85.Text = right_krit_85.ToString("F4");
                 LeftKrit95.Text = left_krit_95.ToString("F4");
                 RightKrit95.Text = right_krit_95.ToString("F4");
-                Srednee_85.Text = srednee.ToString("F4");
-                Srednee_95.Text = srednee.ToString("F4");
+                Srednee_85.Text = mu.ToString("F4");
+                Srednee_95.Text = mu.ToString("F4");
 
             }
 
