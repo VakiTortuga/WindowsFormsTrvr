@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -139,6 +140,50 @@ namespace WindowsFormsTrvr
                 LK8.Text = left_krit.ToString("F4");
                 RK8.Text = right_krit.ToString("F4");
                 S8.Text = Math.Pow(sigma_setted, 2).ToString("F4");
+
+                // Путь к файлу (измените на свой)
+                string filePath = "C:\\Users\\user\\source\\repos\\WindowsFormsTrvr\\WindowsFormsTrvr\\report.txt";
+
+                // Запись в файл
+                using (StreamWriter writer = new StreamWriter(filePath))
+                {
+                    // Заголовок
+                    writer.WriteLine("=== АНАЛИЗ ВЫБОРКИ ===");
+                    writer.WriteLine($"Дата создания: {DateTime.Now}\n");
+
+                    Array.Sort(array);
+
+                    // Основные статистики
+                    writer.WriteLine($"Размер выборки: {array.Length} элементов");
+                    writer.WriteLine($"Среднее значение: {srednee:F4}");
+                    writer.WriteLine($"Исправленная дисперсия: {dispersia:F4}");
+                    writer.WriteLine($"Стандартное отклонение: {Math.Sqrt(dispersia):F4}");
+                    writer.WriteLine($"Минимум: {array.Min():F4}");
+                    writer.WriteLine($"Максимум: {array.Max():F4}\n");
+
+                    int elementsToShow = array.Length;
+                    int elementsPerLine = 10;
+                    writer.WriteLine($"Элементы выборки:");
+
+                    for (int i = 0; i < elementsToShow; i++)
+                    {
+                        // Форматирование элемента
+                        writer.Write($"{array[i],6:F4}");
+
+                        // Переход на новую строку после каждого 10-го элемента
+                        if ((i + 1) % elementsPerLine == 0 || i == array.Length - 1)
+                        {
+                            writer.WriteLine();
+                        }
+                        else
+                        {
+                            // Три пробела между элементами
+                            writer.Write("  ");
+                        }
+                    }
+
+                    writer.WriteLine("\n=== КОНЕЦ ОТЧЁТА ===");
+                }
             }
 
             if (checkedListBox1.SelectedIndex == 2)
