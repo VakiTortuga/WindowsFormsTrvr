@@ -78,7 +78,7 @@ namespace WindowsFormsTrvr
                 {
                     kvadr_otklon += Math.Pow(array[i] - srednee, 2);
                 }
-                dispersia = kvadr_otklon / (double)N - 1;
+                dispersia = kvadr_otklon / ((double)N - 1);
 
                 // 0.15, матожидание, известная дисперсия
                 margine = _ex.WorksheetFunction.Norm_S_Inv(1 - alpha15 / 2) * sigma_setted / Math.Sqrt(N);
