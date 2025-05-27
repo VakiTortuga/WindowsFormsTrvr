@@ -18,7 +18,7 @@ namespace WindowsFormsTrvr
     {
         double[] array;
         double[] intervals;
-        int N, K, M;
+        int N = 0, K = 0, M = 0;
 
         double min, max, difference;
         bool isGistogramm = false;
@@ -28,13 +28,79 @@ namespace WindowsFormsTrvr
             InitializeComponent();
         }
 
+        private void Clear_All_Info()
+        {
+            label17.Text = "---";
+            label19.Text = "---";
+            recomended_intervals.Text = "---";
+            label9.Text = "---";
+            label10.Text = "---";
+            label11.Text = "---";
+            label12.Text = "---";
+            label14.Text = "---";
+            label15.Text = "---";
+
+            LK1.Text = "---";
+            RK1.Text = "---";
+            S1.Text = "---";
+            C1.Text = "---";
+            LK2.Text = "---";
+            RK2.Text = "---";
+            S2.Text = "---";
+            C2.Text = "---";
+            LK3.Text = "---";
+            RK3.Text = "---";
+            S3.Text = "---";
+            C3.Text = "---";
+            LK4.Text = "---";
+            RK4.Text = "---";
+            S4.Text = "---";
+            C4.Text = "---";
+            LK5.Text = "---";
+            RK5.Text = "---";
+            S5.Text = "---";
+            C5.Text = "---";
+            LK6.Text = "---";
+            RK6.Text = "---";
+            S6.Text = "---";
+            C6.Text = "---";
+            LK7.Text = "---";
+            RK7.Text = "---";
+            S7.Text = "---";
+            C7.Text = "---";
+            LK8.Text = "---";
+            RK8.Text = "---";
+            S8.Text = "---";
+            C8.Text = "---";
+        }
+
         // создание выборки
         private void Button1_Click(object sender, EventArgs e)
         {
             N = int.Parse(textBox1.Text);
-            array = new double[N];
-            Random r = new Random();
+            
+            if (N <= 0)
+            {
+                MessageBox.Show("Введите корректный объем выборки!");
+                return;
+            }
 
+            Clear_All_Info();
+            chart1.Series[0].Points.Clear();
+            Random r = new Random();
+            recomended_intervals.Text = Math.Floor(1 + Math.Log((double)N, 2f)).ToString();
+            array = new double[N];
+
+            if (checkedListBox1.CheckedItems.Count == 0)
+            {
+                MessageBox.Show("Выберите тип распределения!");
+            }
+            else
+            {
+                isGistogramm = false;
+            }
+
+            // равномерное
             if (checkedListBox1.SelectedIndex == 0)
             {
                 for (int i = 0; i < array.Length; i++)
@@ -54,6 +120,8 @@ namespace WindowsFormsTrvr
 
                 double mu_setted = double.Parse(textBox4.Text);          // Мат. ожидание
                 double sigma_setted = double.Parse(textBox5.Text);       // Среднеквадратичное отклонение
+                double dispersia_setted = Math.Pow(sigma_setted, 2);
+
                 double srednee = 0, kvadr_otklon = 0, dispersia = 0; // выборочное среднее
 
                 double margine; // эпсилон для доверительного интервала
@@ -88,6 +156,7 @@ namespace WindowsFormsTrvr
                 LK1.Text = left_krit.ToString("F4");
                 RK1.Text = right_krit.ToString("F4");
                 S1.Text = mu_setted.ToString("F4");
+                C1.Text = (left_krit <= mu_setted && mu_setted <= right_krit) ? "Да" : "Нет";
 
                 // 0.05, матожидание, известная дисперсия
                 margine = _ex.WorksheetFunction.Norm_S_Inv(1 - alpha05 / 2) * sigma_setted / Math.Sqrt(N);
@@ -96,50 +165,57 @@ namespace WindowsFormsTrvr
                 LK2.Text = left_krit.ToString("F4");
                 RK2.Text = right_krit.ToString("F4");
                 S2.Text = mu_setted.ToString("F4");
+                C2.Text = (left_krit <= mu_setted && mu_setted <= right_krit) ? "Да" : "Нет";
 
                 // 0.15, матожидание, неизвестная дисперсия
-                margine = _ex.WorksheetFunction.T_Inv(1 - alpha15 / 2, N - 1) * Math.Sqrt(dispersia / (double)N);
+                margine = _ex.WorksheetFunction.T_Inv_2T(alpha15, N - 1) * Math.Sqrt(dispersia / (double)N);
                 left_krit = srednee - margine;
                 right_krit = srednee + margine;
                 LK3.Text = left_krit.ToString("F4");
                 RK3.Text = right_krit.ToString("F4");
                 S3.Text = mu_setted.ToString("F4");
+                C3.Text = (left_krit <= mu_setted && mu_setted <= right_krit) ? "Да" : "Нет";
 
                 // 0.05, матожидание, неизвестная дисперсия
-                margine = _ex.WorksheetFunction.T_Inv(1 - alpha05 / 2, N - 1) * Math.Sqrt(dispersia / (double)N);
+                margine = _ex.WorksheetFunction.T_Inv_2T(alpha05, N - 1) * Math.Sqrt(dispersia / (double)N);
                 left_krit = srednee - margine;
                 right_krit = srednee + margine;
                 LK4.Text = left_krit.ToString("F4");
                 RK4.Text = right_krit.ToString("F4");
                 S4.Text = mu_setted.ToString("F4");
+                C4.Text = (left_krit <= mu_setted && mu_setted <= right_krit) ? "Да" : "Нет";
 
-                // 0.85, дисперсия, известное мат ожидание
+                // 0.15, дисперсия, известное мат ожидание
                 right_krit = kvadr_otklon / _ex.WorksheetFunction.ChiInv(1 - alpha15 / 2, N);
                 left_krit = kvadr_otklon / _ex.WorksheetFunction.ChiInv(alpha15 / 2, N);
                 LK5.Text = left_krit.ToString("F4");
                 RK5.Text = right_krit.ToString("F4");
-                S5.Text = Math.Pow(sigma_setted, 2).ToString("F4");
+                S5.Text = dispersia_setted.ToString("F4");
+                C5.Text = (left_krit <= dispersia_setted && dispersia_setted <= right_krit) ? "Да" : "Нет";
 
-                // 0.95, дисперсия, известное мат ожидание
+                // 0.05, дисперсия, известное мат ожидание
                 right_krit = kvadr_otklon / _ex.WorksheetFunction.ChiInv(1 - alpha05 / 2, N);
                 left_krit = kvadr_otklon / _ex.WorksheetFunction.ChiInv(alpha05 / 2, N);
                 LK6.Text = left_krit.ToString("F4");
                 RK6.Text = right_krit.ToString("F4");
-                S6.Text = Math.Pow(sigma_setted, 2).ToString("F4");
+                S6.Text = dispersia_setted.ToString("F4");
+                C6.Text = (left_krit <= dispersia_setted && dispersia_setted <= right_krit) ? "Да" : "Нет";
 
-                // 0.85, дисперсия, неизвестное мат ожидание
+                // 0.15, дисперсия, неизвестное мат ожидание
                 right_krit = (N - 1) * dispersia / _ex.WorksheetFunction.ChiInv(1 - alpha15 / 2, N - 1);
                 left_krit = (N - 1) * dispersia / _ex.WorksheetFunction.ChiInv(alpha15 / 2, N - 1);
                 LK7.Text = left_krit.ToString("F4");
                 RK7.Text = right_krit.ToString("F4");
-                S7.Text = Math.Pow(sigma_setted, 2).ToString("F4");
+                S7.Text = dispersia_setted.ToString("F4");
+                C7.Text = (left_krit <= dispersia_setted && dispersia_setted <= right_krit) ? "Да" : "Нет";
 
-                // 0.95, дисперсия, неизвестное мат ожидание
+                // 0.05, дисперсия, неизвестное мат ожидание
                 right_krit = (N - 1) * dispersia / _ex.WorksheetFunction.ChiInv(1 - alpha05 / 2, N - 1);
                 left_krit = (N - 1) * dispersia / _ex.WorksheetFunction.ChiInv(alpha05 / 2, N - 1);
                 LK8.Text = left_krit.ToString("F4");
                 RK8.Text = right_krit.ToString("F4");
-                S8.Text = Math.Pow(sigma_setted, 2).ToString("F4");
+                S8.Text = dispersia_setted.ToString("F4");
+                C8.Text = (left_krit <= dispersia_setted && dispersia_setted <= right_krit) ? "Да" : "Нет";
 
                 // Путь к файлу (измените на свой)
                 string filePath = "C:\\Users\\user\\source\\repos\\WindowsFormsTrvr\\WindowsFormsTrvr\\report.txt";
@@ -177,7 +253,6 @@ namespace WindowsFormsTrvr
                         }
                         else
                         {
-                            // Три пробела между элементами
                             writer.Write("  ");
                         }
                     }
@@ -189,6 +264,12 @@ namespace WindowsFormsTrvr
             if (checkedListBox1.SelectedIndex == 2)
             {
                 M = int.Parse(textBox2.Text); // кол-во интервалов
+                if (M <= 0)
+                {
+                    MessageBox.Show("Введите корректное количество интервалов апроксимации!");
+                    return;
+                }
+
                 double[] borders_array = new double[M]; // правые границы интервалов
                 double[] freq_array = new double[M]; // наблюдаемые частоты (количество попаданий)
 
@@ -227,22 +308,17 @@ namespace WindowsFormsTrvr
                 label17.Text = kriteri_pirsona.ToString("F4"); // вывод с 4 знаками после запятой
             }
 
-
-            if (checkedListBox1.CheckedItems.Count == 0)
-            {
-                MessageBox.Show("Выберите тип распределения!");
-            }
-            else
-            {
-                isGistogramm = false;
-            }
-
         }
 
         // создание гистограммы
         private void Button2_Click(object sender, EventArgs e)
         {
             K = int.Parse(textBox3.Text);
+            if (K <= 0)
+            {
+                MessageBox.Show("Введите корректное количество интервалов гистограммы!");
+                return;
+            }
             intervals = new double[K];
             double[] expected_freq = new double[K];
             isGistogramm = true;
@@ -371,11 +447,6 @@ namespace WindowsFormsTrvr
                 label15.Text = mediana.ToString("F4");
             }
 
-
-
-
-
-
         }
 
         private void CheckedListBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -386,7 +457,12 @@ namespace WindowsFormsTrvr
                 {
                     checkedListBox1.SetItemChecked(i, false);
                 }
+                else
+                {
+                    checkedListBox1.SetItemChecked(i, true);
+                }
             }
+            
 
             if (checkedListBox1.SelectedIndex == 2)
             {
@@ -487,6 +563,71 @@ namespace WindowsFormsTrvr
         }
 
         private void Label15_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void S6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LK8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LK7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void S4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LK6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LK1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LK4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LK5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LK2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LK3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void S2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void S8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label31_Click(object sender, EventArgs e)
         {
 
         }
