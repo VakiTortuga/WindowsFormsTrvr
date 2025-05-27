@@ -9,6 +9,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace WindowsFormsTrvr
 {
@@ -44,8 +45,12 @@ namespace WindowsFormsTrvr
             // нормальное распределение
             if (checkedListBox1.SelectedIndex == 1)
             {
+                Microsoft.Office.Interop.Excel.Application _ex = new Microsoft.Office.Interop.Excel.Application();
+
                 // Получаем параметры распределения из TextBox
-                double alpha = 0.925;
+                double alpha15 = 0.15;
+                double alpha05 = 0.05;
+
                 double mu_setted = double.Parse(textBox4.Text);          // Мат. ожидание
                 double sigma_setted = double.Parse(textBox5.Text);       // Среднеквадратичное отклонение
                 double srednee = 0, kvadr_otklon = 0, dispersia = 0; // выборочное среднее
@@ -100,32 +105,32 @@ namespace WindowsFormsTrvr
                 }
                 dispersia = kvadr_otklon / (double)N - 1;
 
-                // 0.85, матожидание, известная дисперсия
-                margine = z_85 * sigma_setted / Math.Sqrt(N);
+                // 0.15, матожидание, известная дисперсия
+                margine = _ex.WorksheetFunction.Norm_S_Inv(1 - alpha15 / 2) * sigma_setted / Math.Sqrt(N);
                 left_krit = srednee - margine;
                 right_krit = srednee + margine;
                 LK1.Text = left_krit.ToString("F4");
                 RK1.Text = right_krit.ToString("F4");
                 S1.Text = mu_setted.ToString("F4");
 
-                // 0.95, матожидание, известная дисперсия
-                margine = z_95 * sigma_setted / Math.Sqrt(N);
+                // 0.05, матожидание, известная дисперсия
+                margine = _ex.WorksheetFunction.Norm_S_Inv(1 - alpha05 / 2) * sigma_setted / Math.Sqrt(N);
                 left_krit = srednee -  margine;
                 right_krit = srednee + margine;
                 LK2.Text = left_krit.ToString("F4");
                 RK2.Text = right_krit.ToString("F4");
                 S2.Text = mu_setted.ToString("F4");
 
-                // 0.85, матожидание, неизвестная дисперсия
-                margine = (N == 50) ? t_015_50 : ((N == 500) ? t_015_500 : 0) * Math.Sqrt(dispersia / (double)N);
+                // 0.15, матожидание, неизвестная дисперсия
+                margine = _ex.WorksheetFunction.T_Inv(1 - alpha15 / 2, N - 1) * Math.Sqrt(dispersia / (double)N);
                 left_krit = srednee - margine;
                 right_krit = srednee + margine;
                 LK3.Text = left_krit.ToString("F4");
                 RK3.Text = right_krit.ToString("F4");
                 S3.Text = mu_setted.ToString("F4");
 
-                // 0.95, матожидание, неизвестная дисперсия
-                margine = (N == 50) ? t_005_50 : ((N == 500) ? t_005_500 : 0) * Math.Sqrt(dispersia / (double)N);
+                // 0.05, матожидание, неизвестная дисперсия
+                margine = _ex.WorksheetFunction.T_Inv(1 - alpha05 / 2, N - 1) * Math.Sqrt(dispersia / (double)N);
                 left_krit = srednee - margine;
                 right_krit = srednee + margine;
                 LK4.Text = left_krit.ToString("F4");
@@ -133,29 +138,29 @@ namespace WindowsFormsTrvr
                 S4.Text = mu_setted.ToString("F4");
 
                 // 0.85, дисперсия, известное мат ожидание
-                right_krit = kvadr_otklon / ((N == 50) ? chi_075_50 : ((N == 500) ? chi_075_500 : 1));
-                left_krit = kvadr_otklon / ((N == 50) ? chi_925_50 : ((N == 500) ? chi_925_500 : 1));
+                right_krit = kvadr_otklon / _ex.WorksheetFunction.ChiInv(1 - alpha15 / 2, N);
+                left_krit = kvadr_otklon / _ex.WorksheetFunction.ChiInv(alpha15 / 2, N);
                 LK5.Text = left_krit.ToString("F4");
                 RK5.Text = right_krit.ToString("F4");
                 S5.Text = Math.Pow(sigma_setted, 2).ToString("F4");
 
                 // 0.95, дисперсия, известное мат ожидание
-                right_krit = kvadr_otklon / ((N == 50) ? chi_025_50 : ((N == 500) ? chi_025_500 : 1));
-                left_krit = kvadr_otklon / ((N == 50) ? chi_975_50 : ((N == 500) ? chi_975_500 : 1));
+                right_krit = kvadr_otklon / _ex.WorksheetFunction.ChiInv(1 - alpha05 / 2, N);
+                left_krit = kvadr_otklon / _ex.WorksheetFunction.ChiInv(alpha05 / 2, N);
                 LK6.Text = left_krit.ToString("F4");
                 RK6.Text = right_krit.ToString("F4");
                 S6.Text = Math.Pow(sigma_setted, 2).ToString("F4");
 
                 // 0.85, дисперсия, неизвестное мат ожидание
-                right_krit = (N - 1) * dispersia / ((N == 50) ? chi_075_50c : ((N == 500) ? chi_075_500c : 1));
-                left_krit = (N - 1) * dispersia / ((N == 50) ? chi_925_50c : ((N == 500) ? chi_925_500c : 1));
+                right_krit = (N - 1) * dispersia / _ex.WorksheetFunction.ChiInv(1 - alpha15 / 2, N - 1);
+                left_krit = (N - 1) * dispersia / _ex.WorksheetFunction.ChiInv(alpha15 / 2, N - 1);
                 LK7.Text = left_krit.ToString("F4");
                 RK7.Text = right_krit.ToString("F4");
                 S7.Text = Math.Pow(sigma_setted, 2).ToString("F4");
 
                 // 0.95, дисперсия, неизвестное мат ожидание
-                right_krit = (N - 1) * dispersia / ((N == 50) ? chi_025_50c : ((N == 500) ? chi_025_500c : 1));
-                left_krit = (N - 1) * dispersia / ((N == 50) ? chi_975_50c : ((N == 500) ? chi_975_500c : 1));
+                right_krit = (N - 1) * dispersia / _ex.WorksheetFunction.ChiInv(1 - alpha05 / 2, N - 1);
+                left_krit = (N - 1) * dispersia / _ex.WorksheetFunction.ChiInv(alpha05 / 2, N - 1);
                 LK8.Text = left_krit.ToString("F4");
                 RK8.Text = right_krit.ToString("F4");
                 S8.Text = Math.Pow(sigma_setted, 2).ToString("F4");
