@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Microsoft.Office.Interop.Excel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -17,7 +19,7 @@ namespace WindowsFormsTrvr
         int N, K, M;
 
         double min, max, difference;
-        bool isbutton2 = false;
+        bool isGistogramm = false;
 
         public Form1()
         {
@@ -25,7 +27,7 @@ namespace WindowsFormsTrvr
         }
 
         // создание выборки
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             N = int.Parse(textBox1.Text);
             array = new double[N];
@@ -39,16 +41,42 @@ namespace WindowsFormsTrvr
                 }
             }
 
+            // нормальное распределение
             if (checkedListBox1.SelectedIndex == 1)
             {
                 // Получаем параметры распределения из TextBox
-                double mu = double.Parse(textBox4.Text);          // Мат. ожидание
-                double sigma = double.Parse(textBox5.Text);       // Среднеквадратичное отклонение (вводится напрямую)
-                double srednee = 0; // выборочное среднее
-                double z_krit_85 = 1.44f; // квантиль при альфа = 0,925 (гамма = 0,85)
-                double z_krit_95 = 1.96f; // квантиль при альфа = 0,975 (гамма = 0,95)
-                double left_krit_85, right_krit_85; // границы доверительного интервала
-                double left_krit_95, right_krit_95;
+                double alpha = 0.925;
+                double mu_setted = double.Parse(textBox4.Text);          // Мат. ожидание
+                double sigma_setted = double.Parse(textBox5.Text);       // Среднеквадратичное отклонение
+                double srednee = 0, kvadr_otklon = 0, dispersia = 0; // выборочное среднее
+                double z_85 = 1.44f; // квантиль норм распред при альфа = 0,925 (гамма = 0,85)
+                double z_95 = 1.96f; // квантиль норм распред при альфа = 0,975 (гамма = 0,95)
+
+                double t_015_50 = 1.46245979f; // квантиль распред стьюд при альфа = 0,15 , N = 50
+                double t_015_500 = 1.441750678f; // квантиль распред стьюд при альфа = 0,15 , N = 500
+                double t_005_50 = 2.009575237f; // квантиль распред стьюд при альфа = 0,05 , N = 50
+                double t_005_500 = 1.964729391f; // квантиль распред стьюд при альфа = 0,05 , N = 500
+
+                double chi_075_50 = 36.39710478f; // квантиль распред стьюд при альфа = 0,15 , N = 50
+                double chi_925_50 = 65.03026945f; // квантиль распред стьюд при альфа = 0,15 , N = 50
+                double chi_075_500 = 455.2176611f; // квантиль распред стьюд при альфа = 0,15 , N = 500
+                double chi_925_500 = 546.2117813f; // квантиль распред стьюд при альфа = 0,15 , N = 500
+                double chi_025_50 = 32.3573637f; // квантиль распред стьюд при альфа = 0,05 , N = 50
+                double chi_975_50 = 71.42019519f; // квантиль распред стьюд при альфа = 0,05 , N = 50
+                double chi_025_500 = 439.9359913f; // квантиль распред стьюд при альфа = 0,05 , N = 500
+                double chi_975_500 = 563.8515293f; // квантиль распред стьюд при альфа = 0,05 , N = 500
+
+                double chi_075_50c = 35.54255856; // квантиль распред стьюд при альфа = 0,15 , N = 49
+                double chi_925_50c = 63.88476793; // квантиль распред стьюд при альфа = 0,15 , N = 49
+                double chi_075_500c = 454.2632306; // квантиль распред стьюд при альфа = 0,15 , N = 499
+                double chi_925_500c = 545.1662114; // квантиль распред стьюд при альфа = 0,15 , N = 499
+                double chi_025_50c = 31.55491646; // квантиль распред стьюд при альфа = 0,05 , N = 49
+                double chi_975_50c = 70.22241357; // квантиль распред стьюд при альфа = 0,05 , N = 49
+                double chi_025_500c = 438.9980224; // квантиль распред стьюд при альфа = 0,05 , N = 499
+                double chi_975_500c = 562.789496; // квантиль распред стьюд при альфа = 0,05 , N = 499
+
+                double margine; // эпсилон для доверительного интервала
+                double left_krit, right_krit; // границы доверительного интервала
 
 
                 for (int i = 0; i < array.Length; i++)
@@ -61,29 +89,82 @@ namespace WindowsFormsTrvr
                     }
 
                     // Масштабирование
-                    array[i] = mu + sigma * (sum - 20) / Math.Sqrt(40 / 12.0);
+                    array[i] = mu_setted + sigma_setted * (sum - 20) / Math.Sqrt(40 / 12.0);
                     srednee += array[i];
                 }
                 srednee /= N; // выборочное среднее
 
-                left_krit_85 = srednee - z_krit_85 * sigma / Math.Sqrt(N);
-                right_krit_85 = srednee + z_krit_85 * sigma / Math.Sqrt(N);
-                left_krit_95 = srednee - z_krit_95 * sigma / Math.Sqrt(N);
-                right_krit_95 = srednee + z_krit_95 * sigma / Math.Sqrt(N);
+                for (int i = 0; i < array.Length; i++)
+                {
+                    kvadr_otklon += Math.Pow(array[i] - srednee, 2);
+                }
+                dispersia = kvadr_otklon / (double)N - 1;
 
-                LeftKrit85.Text = left_krit_85.ToString("F4");
-                RightKrit85.Text = right_krit_85.ToString("F4");
-                LeftKrit95.Text = left_krit_95.ToString("F4");
-                RightKrit95.Text = right_krit_95.ToString("F4");
-                Srednee_85.Text = mu.ToString("F4");
-                Srednee_95.Text = mu.ToString("F4");
+                // 0.85, матожидание, известная дисперсия
+                margine = z_85 * sigma_setted / Math.Sqrt(N);
+                left_krit = srednee - margine;
+                right_krit = srednee + margine;
+                LK1.Text = left_krit.ToString("F4");
+                RK1.Text = right_krit.ToString("F4");
+                S1.Text = mu_setted.ToString("F4");
 
+                // 0.95, матожидание, известная дисперсия
+                margine = z_95 * sigma_setted / Math.Sqrt(N);
+                left_krit = srednee -  margine;
+                right_krit = srednee + margine;
+                LK2.Text = left_krit.ToString("F4");
+                RK2.Text = right_krit.ToString("F4");
+                S2.Text = mu_setted.ToString("F4");
+
+                // 0.85, матожидание, неизвестная дисперсия
+                margine = (N == 50) ? t_015_50 : ((N == 500) ? t_015_500 : 0) * Math.Sqrt(dispersia / (double)N);
+                left_krit = srednee - margine;
+                right_krit = srednee + margine;
+                LK3.Text = left_krit.ToString("F4");
+                RK3.Text = right_krit.ToString("F4");
+                S3.Text = mu_setted.ToString("F4");
+
+                // 0.95, матожидание, неизвестная дисперсия
+                margine = (N == 50) ? t_005_50 : ((N == 500) ? t_005_500 : 0) * Math.Sqrt(dispersia / (double)N);
+                left_krit = srednee - margine;
+                right_krit = srednee + margine;
+                LK4.Text = left_krit.ToString("F4");
+                RK4.Text = right_krit.ToString("F4");
+                S4.Text = mu_setted.ToString("F4");
+
+                // 0.85, дисперсия, известное мат ожидание
+                right_krit = kvadr_otklon / ((N == 50) ? chi_075_50 : ((N == 500) ? chi_075_500 : 1));
+                left_krit = kvadr_otklon / ((N == 50) ? chi_925_50 : ((N == 500) ? chi_925_500 : 1));
+                LK5.Text = left_krit.ToString("F4");
+                RK5.Text = right_krit.ToString("F4");
+                S5.Text = Math.Pow(sigma_setted, 2).ToString("F4");
+
+                // 0.95, дисперсия, известное мат ожидание
+                right_krit = kvadr_otklon / ((N == 50) ? chi_025_50 : ((N == 500) ? chi_025_500 : 1));
+                left_krit = kvadr_otklon / ((N == 50) ? chi_975_50 : ((N == 500) ? chi_975_500 : 1));
+                LK6.Text = left_krit.ToString("F4");
+                RK6.Text = right_krit.ToString("F4");
+                S6.Text = Math.Pow(sigma_setted, 2).ToString("F4");
+
+                // 0.85, дисперсия, неизвестное мат ожидание
+                right_krit = (N - 1) * dispersia / ((N == 50) ? chi_075_50c : ((N == 500) ? chi_075_500c : 1));
+                left_krit = (N - 1) * dispersia / ((N == 50) ? chi_925_50c : ((N == 500) ? chi_925_500c : 1));
+                LK7.Text = left_krit.ToString("F4");
+                RK7.Text = right_krit.ToString("F4");
+                S7.Text = Math.Pow(sigma_setted, 2).ToString("F4");
+
+                // 0.95, дисперсия, неизвестное мат ожидание
+                right_krit = (N - 1) * dispersia / ((N == 50) ? chi_025_50c : ((N == 500) ? chi_025_500c : 1));
+                left_krit = (N - 1) * dispersia / ((N == 50) ? chi_975_50c : ((N == 500) ? chi_975_500c : 1));
+                LK8.Text = left_krit.ToString("F4");
+                RK8.Text = right_krit.ToString("F4");
+                S8.Text = Math.Pow(sigma_setted, 2).ToString("F4");
             }
 
             if (checkedListBox1.SelectedIndex == 2)
             {
                 M = int.Parse(textBox2.Text); // кол-во интервалов
-                double[] bord_array = new double[M]; // правые границы интервалов
+                double[] borders_array = new double[M]; // правые границы интервалов
                 double[] freq_array = new double[M]; // наблюдаемые частоты (количество попаданий)
 
                 // 1. Расчёт границ интервалов (равновероятных)
@@ -92,7 +173,7 @@ namespace WindowsFormsTrvr
 
                 for (int i = 0; i < M; i++)
                 {
-                    bord_array[i] = 2 * Math.Sqrt(pos_x);
+                    borders_array[i] = 2 * Math.Sqrt(pos_x);
                     pos_x += theor_prob;
                     freq_array[i] = 0;
                 }
@@ -101,8 +182,8 @@ namespace WindowsFormsTrvr
                 for (int i = 0; i < N; i++)
                 {
                     int interval = r.Next(0, M); // случайный интервал
-                    double local_left = (interval > 0) ? bord_array[interval - 1] : 0;
-                    double local_right = bord_array[interval];
+                    double local_left = (interval > 0) ? borders_array[interval - 1] : 0;
+                    double local_right = borders_array[interval];
 
                     double c = r.NextDouble() * (local_right - local_left) + local_left;
                     array[i] = c;
@@ -126,16 +207,20 @@ namespace WindowsFormsTrvr
             {
                 MessageBox.Show("Выберите тип распределения!");
             }
+            else
+            {
+                isGistogramm = false;
+            }
 
         }
 
         // создание гистограммы
-        private void button2_Click(object sender, EventArgs e)
+        private void Button2_Click(object sender, EventArgs e)
         {
             K = int.Parse(textBox3.Text);
             intervals = new double[K];
             double[] expected_freq = new double[K];
-            isbutton2 = true;
+            isGistogramm = true;
 
 
             // Находим min и max
@@ -181,7 +266,7 @@ namespace WindowsFormsTrvr
         }
 
         // расчет характеристик
-        private void button3_Click(object sender, EventArgs e)
+        private void Button3_Click(object sender, EventArgs e)
         {
             double srednee = 0, dispersia = 0, moda, mediana, mediana_arr;
 
@@ -205,7 +290,7 @@ namespace WindowsFormsTrvr
             mediana_arr = (N % 2 == 1) ? array[N / 2] : (array[N / 2 - 1] + array[N / 2]) / 2;
             label12.Text = mediana_arr.ToString("F4");
 
-            if (isbutton2 == true)
+            if (isGistogramm == true)
             {
                 for (int i = 0; i < K; i++)
                 {
@@ -268,7 +353,7 @@ namespace WindowsFormsTrvr
 
         }
 
-        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void CheckedListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             for (int i = 0; i < checkedListBox1.Items.Count; i++)
             {
@@ -305,83 +390,83 @@ namespace WindowsFormsTrvr
             }
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void TextBox1_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
+        private void TextBox2_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void textBox3_TextChanged(object sender, EventArgs e)
+        private void TextBox3_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void Label1_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        private void Label2_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label14_Click(object sender, EventArgs e)
+        private void Label14_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label16_Click(object sender, EventArgs e)
+        private void Label16_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void checkedListBox2_SelectedIndexChanged_1(object sender, EventArgs e)
+        private void CheckedListBox2_SelectedIndexChanged_1(object sender, EventArgs e)
         {
 
         }
 
-        private void label18_Click(object sender, EventArgs e)
+        private void Label18_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label21_Click(object sender, EventArgs e)
+        private void Label21_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label24_Click(object sender, EventArgs e)
+        private void Label24_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label28_Click(object sender, EventArgs e)
+        private void Label28_Click(object sender, EventArgs e)
         {
 
         }
 
 
-        private void interval_85_Click(object sender, EventArgs e)
+        private void Interval_85_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label12_Click(object sender, EventArgs e)
+        private void Label12_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label15_Click(object sender, EventArgs e)
+        private void Label15_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label6_Click(object sender, EventArgs e)
+        private void Label6_Click(object sender, EventArgs e)
         {
 
         }
@@ -391,12 +476,12 @@ namespace WindowsFormsTrvr
 
         }
 
-        private void label3_Click(object sender, EventArgs e)
+        private void Label3_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label4_Click(object sender, EventArgs e)
+        private void Label4_Click(object sender, EventArgs e)
         {
 
         }
