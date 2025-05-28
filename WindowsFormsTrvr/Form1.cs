@@ -22,6 +22,7 @@ namespace WindowsFormsTrvr
 
         double min, max, difference;
         bool isGistogramm = false;
+        Microsoft.Office.Interop.Excel.Application _ex = new Microsoft.Office.Interop.Excel.Application();
 
         public Form1()
         {
@@ -90,7 +91,7 @@ namespace WindowsFormsTrvr
             Random r = new Random();
             recomended_intervals.Text = Math.Floor(1 + Math.Log((double)N, 2f)).ToString();
             array = new double[N];
-
+            
             if (checkedListBox1.CheckedItems.Count == 0)
             {
                 MessageBox.Show("Выберите тип распределения!");
@@ -112,7 +113,6 @@ namespace WindowsFormsTrvr
             // нормальное распределение
             if (checkedListBox1.SelectedIndex == 1)
             {
-                Microsoft.Office.Interop.Excel.Application _ex = new Microsoft.Office.Interop.Excel.Application();
 
                 // Получаем параметры распределения из TextBox
                 double alpha15 = 0.15;
@@ -261,6 +261,7 @@ namespace WindowsFormsTrvr
                 }
             }
 
+            // заданное распределение (0.5х)
             if (checkedListBox1.SelectedIndex == 2)
             {
                 M = int.Parse(textBox2.Text); // кол-во интервалов
@@ -297,7 +298,7 @@ namespace WindowsFormsTrvr
                 }
 
                 // 3. Расчёт χ²-статистики
-                double kriteri_pirsona = 0;
+                double kriteri_pirsona = 0, krit_value_pirsona, alpha05 = 0.05, alpha01 = 0.01;
                 double expected_freq = N * theor_prob; // теоретическая частота для каждого интервала
 
                 for (int i = 0; i < M; i++)
@@ -306,6 +307,16 @@ namespace WindowsFormsTrvr
                 }
 
                 label17.Text = kriteri_pirsona.ToString("F4"); // вывод с 4 знаками после запятой
+
+                krit_value_pirsona = _ex.WorksheetFunction.ChiInv(alpha05, M - 1);
+                label39.Text = krit_value_pirsona.ToString("F4");
+                if (kriteri_pirsona <= krit_value_pirsona) label36.Text = "Да";
+                else label36.Text = "Нет";
+
+                krit_value_pirsona = _ex.WorksheetFunction.ChiInv(alpha01, M - 1);
+                label43.Text = krit_value_pirsona.ToString("F4");
+                if (kriteri_pirsona <= krit_value_pirsona) label42.Text = "Да";
+                else label42.Text = "Нет";
             }
 
         }
@@ -353,8 +364,8 @@ namespace WindowsFormsTrvr
 
             if (checkedListBox1.SelectedIndex == 2)
             {
-                double kriteri_pirsona = 0;
-                int degrees_of_freedom = K - 1;  // Степени свободы
+                double kriteri_pirsona = 0, krit_value_pirsona, alpha05 = 0.05, alpha01 = 0.01;
+
 
                 for (int i = 0; i < K; i++)
                 {
@@ -362,7 +373,16 @@ namespace WindowsFormsTrvr
                 }
 
                 label19.Text = kriteri_pirsona.ToString("F4");
-                // Дополнительно можно вывести p-value или критическое значение
+
+                krit_value_pirsona = _ex.WorksheetFunction.ChiInv(alpha05, K - 1);
+                label41.Text = krit_value_pirsona.ToString("F4");
+                if (kriteri_pirsona <= krit_value_pirsona) label37.Text = "Да";
+                else label37.Text = "Нет";
+
+                krit_value_pirsona = _ex.WorksheetFunction.ChiInv(alpha01, K - 1);
+                label45.Text = krit_value_pirsona.ToString("F4");
+                if (kriteri_pirsona <= krit_value_pirsona) label44.Text = "Да";
+                else label44.Text = "Нет";
             }
         }
 

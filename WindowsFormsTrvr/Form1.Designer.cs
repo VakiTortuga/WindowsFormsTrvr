@@ -109,6 +109,22 @@
             this.C7 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
             this.recomended_intervals = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
+            this.label37 = new System.Windows.Forms.Label();
+            this.label38 = new System.Windows.Forms.Label();
+            this.label39 = new System.Windows.Forms.Label();
+            this.label41 = new System.Windows.Forms.Label();
+            this.label42 = new System.Windows.Forms.Label();
+            this.label43 = new System.Windows.Forms.Label();
+            this.label44 = new System.Windows.Forms.Label();
+            this.label45 = new System.Windows.Forms.Label();
+            this.label46 = new System.Windows.Forms.Label();
+            this.label47 = new System.Windows.Forms.Label();
+            this.label48 = new System.Windows.Forms.Label();
+            this.label49 = new System.Windows.Forms.Label();
+            this.label50 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -330,7 +346,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(43, 495);
+            this.label16.Location = new System.Drawing.Point(9, 548);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(267, 13);
             this.label16.TabIndex = 23;
@@ -339,7 +355,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(334, 495);
+            this.label17.Location = new System.Drawing.Point(300, 548);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(16, 13);
             this.label17.TabIndex = 24;
@@ -348,16 +364,16 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(43, 517);
+            this.label18.Location = new System.Drawing.Point(9, 598);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(256, 13);
+            this.label18.Size = new System.Drawing.Size(256, 26);
             this.label18.TabIndex = 25;
-            this.label18.Text = "Критерий Пирсона по интервалам гистограммы:";
+            this.label18.Text = "Критерий Пирсона по интервалам гистограммы:\r\n(корректный критерий)";
             // 
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(334, 517);
+            this.label19.Location = new System.Drawing.Point(300, 602);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(16, 13);
             this.label19.TabIndex = 26;
@@ -818,11 +834,171 @@
             this.recomended_intervals.TabIndex = 35;
             this.recomended_intervals.Text = "---";
             // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(300, 504);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(54, 26);
+            this.label34.TabIndex = 36;
+            this.label34.Text = "значение\r\nкритерия";
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(487, 504);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(69, 26);
+            this.label35.TabIndex = 37;
+            this.label35.Text = "выполнение\r\nкритерия";
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(487, 538);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(16, 13);
+            this.label36.TabIndex = 38;
+            this.label36.Text = "---";
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(487, 589);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(16, 13);
+            this.label37.TabIndex = 39;
+            this.label37.Text = "---";
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Location = new System.Drawing.Point(387, 504);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(71, 26);
+            this.label38.TabIndex = 37;
+            this.label38.Text = "критическое\r\nзначение";
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(387, 538);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(16, 13);
+            this.label39.TabIndex = 38;
+            this.label39.Text = "---";
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Location = new System.Drawing.Point(387, 589);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(16, 13);
+            this.label41.TabIndex = 39;
+            this.label41.Text = "---";
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Location = new System.Drawing.Point(487, 560);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(16, 13);
+            this.label42.TabIndex = 38;
+            this.label42.Text = "---";
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Location = new System.Drawing.Point(387, 560);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(16, 13);
+            this.label43.TabIndex = 38;
+            this.label43.Text = "---";
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.Location = new System.Drawing.Point(487, 611);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(16, 13);
+            this.label44.TabIndex = 39;
+            this.label44.Text = "---";
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.Location = new System.Drawing.Point(387, 611);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(16, 13);
+            this.label45.TabIndex = 39;
+            this.label45.Text = "---";
+            // 
+            // label46
+            // 
+            this.label46.AutoSize = true;
+            this.label46.Location = new System.Drawing.Point(581, 504);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(67, 26);
+            this.label46.TabIndex = 37;
+            this.label46.Text = "уровень\r\nзначимости";
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Location = new System.Drawing.Point(581, 538);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(28, 13);
+            this.label47.TabIndex = 37;
+            this.label47.Text = "0,05";
+            // 
+            // label48
+            // 
+            this.label48.AutoSize = true;
+            this.label48.Location = new System.Drawing.Point(581, 560);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(28, 13);
+            this.label48.TabIndex = 37;
+            this.label48.Text = "0,01";
+            // 
+            // label49
+            // 
+            this.label49.AutoSize = true;
+            this.label49.Location = new System.Drawing.Point(581, 589);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(28, 13);
+            this.label49.TabIndex = 37;
+            this.label49.Text = "0,05";
+            // 
+            // label50
+            // 
+            this.label50.AutoSize = true;
+            this.label50.Location = new System.Drawing.Point(581, 611);
+            this.label50.Name = "label50";
+            this.label50.Size = new System.Drawing.Size(28, 13);
+            this.label50.TabIndex = 37;
+            this.label50.Text = "0,01";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1249, 630);
+            this.ClientSize = new System.Drawing.Size(1249, 637);
+            this.Controls.Add(this.label45);
+            this.Controls.Add(this.label41);
+            this.Controls.Add(this.label44);
+            this.Controls.Add(this.label37);
+            this.Controls.Add(this.label43);
+            this.Controls.Add(this.label39);
+            this.Controls.Add(this.label42);
+            this.Controls.Add(this.label36);
+            this.Controls.Add(this.label38);
+            this.Controls.Add(this.label50);
+            this.Controls.Add(this.label49);
+            this.Controls.Add(this.label48);
+            this.Controls.Add(this.label47);
+            this.Controls.Add(this.label46);
+            this.Controls.Add(this.label35);
+            this.Controls.Add(this.label34);
             this.Controls.Add(this.recomended_intervals);
             this.Controls.Add(this.label31);
             this.Controls.Add(this.label30);
@@ -989,6 +1165,22 @@
         private System.Windows.Forms.Label C7;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label recomended_intervals;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.Label label44;
+        private System.Windows.Forms.Label label45;
+        private System.Windows.Forms.Label label46;
+        private System.Windows.Forms.Label label47;
+        private System.Windows.Forms.Label label48;
+        private System.Windows.Forms.Label label49;
+        private System.Windows.Forms.Label label50;
     }
 }
 
