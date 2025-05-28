@@ -136,7 +136,6 @@
             this.label1.Size = new System.Drawing.Size(100, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "Объем выборки N";
-            this.label1.Click += new System.EventHandler(this.Label1_Click);
             // 
             // label2
             // 
@@ -146,7 +145,6 @@
             this.label2.Size = new System.Drawing.Size(107, 13);
             this.label2.TabIndex = 2;
             this.label2.Text = "Вид распределения";
-            this.label2.Click += new System.EventHandler(this.Label2_Click);
             // 
             // label3
             // 
@@ -156,7 +154,6 @@
             this.label3.Size = new System.Drawing.Size(103, 26);
             this.label3.TabIndex = 3;
             this.label3.Text = "Кол-во интервалов\r\nаппроксимации M";
-            this.label3.Click += new System.EventHandler(this.Label3_Click);
             // 
             // label4
             // 
@@ -166,7 +163,6 @@
             this.label4.Size = new System.Drawing.Size(150, 13);
             this.label4.TabIndex = 4;
             this.label4.Text = "Количество столбцов графа";
-            this.label4.Click += new System.EventHandler(this.Label4_Click);
             // 
             // textBox1
             // 
@@ -174,7 +170,6 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 5;
-            this.textBox1.TextChanged += new System.EventHandler(this.TextBox1_TextChanged);
             // 
             // textBox2
             // 
@@ -182,7 +177,6 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(100, 20);
             this.textBox2.TabIndex = 6;
-            this.textBox2.TextChanged += new System.EventHandler(this.TextBox2_TextChanged);
             // 
             // textBox3
             // 
@@ -190,7 +184,6 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(100, 20);
             this.textBox3.TabIndex = 7;
-            this.textBox3.TextChanged += new System.EventHandler(this.TextBox3_TextChanged);
             // 
             // checkedListBox1
             // 
@@ -221,7 +214,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(243, 20);
             this.button2.TabIndex = 10;
-            this.button2.Text = "Создать граф";
+            this.button2.Text = "Создать гистограмму";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.Button2_Click);
             // 
@@ -242,7 +235,6 @@
             this.label6.Size = new System.Drawing.Size(64, 13);
             this.label6.TabIndex = 12;
             this.label6.Text = "Дисперсия";
-            this.label6.Click += new System.EventHandler(this.Label6_Click);
             // 
             // label7
             // 
@@ -325,7 +317,6 @@
             this.label14.Size = new System.Drawing.Size(16, 13);
             this.label14.TabIndex = 21;
             this.label14.Text = "---";
-            this.label14.Click += new System.EventHandler(this.Label14_Click);
             // 
             // label15
             // 
@@ -344,7 +335,6 @@
             this.label16.Size = new System.Drawing.Size(267, 13);
             this.label16.TabIndex = 23;
             this.label16.Text = "Критерий Пирсона по интервалам аппроксимации:";
-            this.label16.Click += new System.EventHandler(this.Label16_Click);
             // 
             // label17
             // 
@@ -363,7 +353,6 @@
             this.label18.Size = new System.Drawing.Size(256, 13);
             this.label18.TabIndex = 25;
             this.label18.Text = "Критерий Пирсона по интервалам гистограммы:";
-            this.label18.Click += new System.EventHandler(this.Label18_Click);
             // 
             // label19
             // 
@@ -391,7 +380,6 @@
             this.label21.Size = new System.Drawing.Size(126, 26);
             this.label21.TabIndex = 28;
             this.label21.Text = "Среднеквадратическое\r\nотклонение";
-            this.label21.Click += new System.EventHandler(this.Label21_Click);
             // 
             // textBox4
             // 
@@ -415,7 +403,6 @@
             this.interval_85.Size = new System.Drawing.Size(28, 26);
             this.interval_85.TabIndex = 31;
             this.interval_85.Text = "0.85\r\n0.95";
-            this.interval_85.Click += new System.EventHandler(this.Interval_85_Click);
             // 
             // LK1
             // 
@@ -425,7 +412,6 @@
             this.LK1.Size = new System.Drawing.Size(16, 13);
             this.LK1.TabIndex = 31;
             this.LK1.Text = "---";
-            this.LK1.Click += new System.EventHandler(this.LK1_Click);
             // 
             // S1
             // 
@@ -435,7 +421,6 @@
             this.S1.Size = new System.Drawing.Size(16, 13);
             this.S1.TabIndex = 31;
             this.S1.Text = "---";
-            this.S1.Click += new System.EventHandler(this.Label24_Click);
             // 
             // LK2
             // 
@@ -445,7 +430,6 @@
             this.LK2.Size = new System.Drawing.Size(16, 13);
             this.LK2.TabIndex = 31;
             this.LK2.Text = "---";
-            this.LK2.Click += new System.EventHandler(this.LK2_Click);
             // 
             // S2
             // 
@@ -455,7 +439,6 @@
             this.S2.Size = new System.Drawing.Size(16, 13);
             this.S2.TabIndex = 31;
             this.S2.Text = "---";
-            this.S2.Click += new System.EventHandler(this.S2_Click);
             // 
             // RK2
             // 
@@ -465,7 +448,6 @@
             this.RK2.Size = new System.Drawing.Size(16, 13);
             this.RK2.TabIndex = 31;
             this.RK2.Text = "---";
-            this.RK2.Click += new System.EventHandler(this.Label28_Click);
             // 
             // RK1
             // 
@@ -475,7 +457,6 @@
             this.RK1.Size = new System.Drawing.Size(16, 13);
             this.RK1.TabIndex = 31;
             this.RK1.Text = "---";
-            this.RK1.Click += new System.EventHandler(this.Label28_Click);
             // 
             // label22
             // 
@@ -503,7 +484,6 @@
             this.label24.Size = new System.Drawing.Size(28, 26);
             this.label24.TabIndex = 31;
             this.label24.Text = "0.85\r\n0.95";
-            this.label24.Click += new System.EventHandler(this.Interval_85_Click);
             // 
             // LK3
             // 
@@ -513,7 +493,6 @@
             this.LK3.Size = new System.Drawing.Size(16, 13);
             this.LK3.TabIndex = 31;
             this.LK3.Text = "---";
-            this.LK3.Click += new System.EventHandler(this.LK3_Click);
             // 
             // S3
             // 
@@ -523,7 +502,6 @@
             this.S3.Size = new System.Drawing.Size(16, 13);
             this.S3.TabIndex = 31;
             this.S3.Text = "---";
-            this.S3.Click += new System.EventHandler(this.Label24_Click);
             // 
             // LK4
             // 
@@ -533,7 +511,6 @@
             this.LK4.Size = new System.Drawing.Size(16, 13);
             this.LK4.TabIndex = 31;
             this.LK4.Text = "---";
-            this.LK4.Click += new System.EventHandler(this.LK4_Click);
             // 
             // S4
             // 
@@ -543,7 +520,6 @@
             this.S4.Size = new System.Drawing.Size(16, 13);
             this.S4.TabIndex = 31;
             this.S4.Text = "---";
-            this.S4.Click += new System.EventHandler(this.S4_Click);
             // 
             // RK4
             // 
@@ -553,7 +529,6 @@
             this.RK4.Size = new System.Drawing.Size(16, 13);
             this.RK4.TabIndex = 31;
             this.RK4.Text = "---";
-            this.RK4.Click += new System.EventHandler(this.Label28_Click);
             // 
             // RK3
             // 
@@ -563,7 +538,6 @@
             this.RK3.Size = new System.Drawing.Size(16, 13);
             this.RK3.TabIndex = 31;
             this.RK3.Text = "---";
-            this.RK3.Click += new System.EventHandler(this.Label28_Click);
             // 
             // label25
             // 
@@ -573,7 +547,6 @@
             this.label25.Size = new System.Drawing.Size(28, 26);
             this.label25.TabIndex = 31;
             this.label25.Text = "0.85\r\n0.95";
-            this.label25.Click += new System.EventHandler(this.Interval_85_Click);
             // 
             // LK5
             // 
@@ -583,7 +556,6 @@
             this.LK5.Size = new System.Drawing.Size(16, 13);
             this.LK5.TabIndex = 31;
             this.LK5.Text = "---";
-            this.LK5.Click += new System.EventHandler(this.LK5_Click);
             // 
             // S5
             // 
@@ -593,7 +565,6 @@
             this.S5.Size = new System.Drawing.Size(16, 13);
             this.S5.TabIndex = 31;
             this.S5.Text = "---";
-            this.S5.Click += new System.EventHandler(this.Label24_Click);
             // 
             // LK6
             // 
@@ -603,7 +574,6 @@
             this.LK6.Size = new System.Drawing.Size(16, 13);
             this.LK6.TabIndex = 31;
             this.LK6.Text = "---";
-            this.LK6.Click += new System.EventHandler(this.LK6_Click);
             // 
             // S6
             // 
@@ -613,7 +583,6 @@
             this.S6.Size = new System.Drawing.Size(16, 13);
             this.S6.TabIndex = 31;
             this.S6.Text = "---";
-            this.S6.Click += new System.EventHandler(this.S6_Click);
             // 
             // RK6
             // 
@@ -623,7 +592,6 @@
             this.RK6.Size = new System.Drawing.Size(16, 13);
             this.RK6.TabIndex = 31;
             this.RK6.Text = "---";
-            this.RK6.Click += new System.EventHandler(this.Label28_Click);
             // 
             // RK5
             // 
@@ -633,7 +601,6 @@
             this.RK5.Size = new System.Drawing.Size(16, 13);
             this.RK5.TabIndex = 31;
             this.RK5.Text = "---";
-            this.RK5.Click += new System.EventHandler(this.Label28_Click);
             // 
             // label32
             // 
@@ -652,7 +619,6 @@
             this.label33.Size = new System.Drawing.Size(28, 26);
             this.label33.TabIndex = 31;
             this.label33.Text = "0.85\r\n0.95";
-            this.label33.Click += new System.EventHandler(this.Interval_85_Click);
             // 
             // LK7
             // 
@@ -662,7 +628,6 @@
             this.LK7.Size = new System.Drawing.Size(16, 13);
             this.LK7.TabIndex = 31;
             this.LK7.Text = "---";
-            this.LK7.Click += new System.EventHandler(this.LK7_Click);
             // 
             // S7
             // 
@@ -672,7 +637,6 @@
             this.S7.Size = new System.Drawing.Size(16, 13);
             this.S7.TabIndex = 31;
             this.S7.Text = "---";
-            this.S7.Click += new System.EventHandler(this.Label24_Click);
             // 
             // LK8
             // 
@@ -682,7 +646,6 @@
             this.LK8.Size = new System.Drawing.Size(16, 13);
             this.LK8.TabIndex = 31;
             this.LK8.Text = "---";
-            this.LK8.Click += new System.EventHandler(this.LK8_Click);
             // 
             // S8
             // 
@@ -692,7 +655,6 @@
             this.S8.Size = new System.Drawing.Size(16, 13);
             this.S8.TabIndex = 31;
             this.S8.Text = "---";
-            this.S8.Click += new System.EventHandler(this.S8_Click);
             // 
             // RK8
             // 
@@ -702,7 +664,6 @@
             this.RK8.Size = new System.Drawing.Size(16, 13);
             this.RK8.TabIndex = 31;
             this.RK8.Text = "---";
-            this.RK8.Click += new System.EventHandler(this.Label28_Click);
             // 
             // RK7
             // 
@@ -712,7 +673,6 @@
             this.RK7.Size = new System.Drawing.Size(16, 13);
             this.RK7.TabIndex = 31;
             this.RK7.Text = "---";
-            this.RK7.Click += new System.EventHandler(this.Label28_Click);
             // 
             // label40
             // 
@@ -776,7 +736,6 @@
             this.C2.Size = new System.Drawing.Size(16, 13);
             this.C2.TabIndex = 31;
             this.C2.Text = "---";
-            this.C2.Click += new System.EventHandler(this.Label28_Click);
             // 
             // C4
             // 
@@ -786,7 +745,6 @@
             this.C4.Size = new System.Drawing.Size(16, 13);
             this.C4.TabIndex = 31;
             this.C4.Text = "---";
-            this.C4.Click += new System.EventHandler(this.Label28_Click);
             // 
             // C6
             // 
@@ -796,7 +754,6 @@
             this.C6.Size = new System.Drawing.Size(16, 13);
             this.C6.TabIndex = 31;
             this.C6.Text = "---";
-            this.C6.Click += new System.EventHandler(this.Label28_Click);
             // 
             // C8
             // 
@@ -806,7 +763,6 @@
             this.C8.Size = new System.Drawing.Size(16, 13);
             this.C8.TabIndex = 31;
             this.C8.Text = "---";
-            this.C8.Click += new System.EventHandler(this.Label28_Click);
             // 
             // C1
             // 
@@ -816,7 +772,6 @@
             this.C1.Size = new System.Drawing.Size(16, 13);
             this.C1.TabIndex = 31;
             this.C1.Text = "---";
-            this.C1.Click += new System.EventHandler(this.Label28_Click);
             // 
             // C3
             // 
@@ -826,7 +781,6 @@
             this.C3.Size = new System.Drawing.Size(16, 13);
             this.C3.TabIndex = 31;
             this.C3.Text = "---";
-            this.C3.Click += new System.EventHandler(this.Label28_Click);
             // 
             // C5
             // 
@@ -836,7 +790,6 @@
             this.C5.Size = new System.Drawing.Size(16, 13);
             this.C5.TabIndex = 31;
             this.C5.Text = "---";
-            this.C5.Click += new System.EventHandler(this.Label28_Click);
             // 
             // C7
             // 
@@ -846,7 +799,6 @@
             this.C7.Size = new System.Drawing.Size(16, 13);
             this.C7.TabIndex = 31;
             this.C7.Text = "---";
-            this.C7.Click += new System.EventHandler(this.Label28_Click);
             // 
             // label31
             // 
@@ -856,7 +808,6 @@
             this.label31.Size = new System.Drawing.Size(215, 13);
             this.label31.TabIndex = 34;
             this.label31.Text = "Рекомендуемое количество интервалов:";
-            this.label31.Click += new System.EventHandler(this.label31_Click);
             // 
             // recomended_intervals
             // 
@@ -952,7 +903,6 @@
             this.Controls.Add(this.chart1);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
