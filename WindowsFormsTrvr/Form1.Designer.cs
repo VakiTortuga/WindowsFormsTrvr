@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -108,7 +108,7 @@
             this.C5 = new System.Windows.Forms.Label();
             this.C7 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
-            this.recomended_intervals = new System.Windows.Forms.Label();
+            this.rec = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
             this.K1 = new System.Windows.Forms.Label();
@@ -130,16 +130,16 @@
             // 
             // chart1
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(12, 10);
             this.chart1.Name = "chart1";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chart1.Series.Add(series2);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart1.Series.Add(series1);
             this.chart1.Size = new System.Drawing.Size(669, 479);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
@@ -825,14 +825,14 @@
             this.label31.TabIndex = 34;
             this.label31.Text = "Рекомендуемое количество интервалов:";
             // 
-            // recomended_intervals
+            // rec
             // 
-            this.recomended_intervals.AutoSize = true;
-            this.recomended_intervals.Location = new System.Drawing.Point(916, 149);
-            this.recomended_intervals.Name = "recomended_intervals";
-            this.recomended_intervals.Size = new System.Drawing.Size(16, 13);
-            this.recomended_intervals.TabIndex = 35;
-            this.recomended_intervals.Text = "---";
+            this.rec.AutoSize = true;
+            this.rec.Location = new System.Drawing.Point(916, 149);
+            this.rec.Name = "rec";
+            this.rec.Size = new System.Drawing.Size(16, 13);
+            this.rec.TabIndex = 35;
+            this.rec.Text = "---";
             // 
             // label34
             // 
@@ -999,7 +999,7 @@
             this.Controls.Add(this.label46);
             this.Controls.Add(this.label35);
             this.Controls.Add(this.label34);
-            this.Controls.Add(this.recomended_intervals);
+            this.Controls.Add(this.rec);
             this.Controls.Add(this.label31);
             this.Controls.Add(this.label30);
             this.Controls.Add(this.label29);
@@ -1164,7 +1164,7 @@
         private System.Windows.Forms.Label C5;
         private System.Windows.Forms.Label C7;
         private System.Windows.Forms.Label label31;
-        private System.Windows.Forms.Label recomended_intervals;
+        private System.Windows.Forms.Label rec;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.Label K1;

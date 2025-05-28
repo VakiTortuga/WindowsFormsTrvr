@@ -17,18 +17,22 @@ namespace WindowsFormsTrvr
     public partial class Form1: Form
     {
         double[] array; // массив выборки
-        double[] intervals; // кол-во элементов в интервале
-        int N = 0, K = 0, M = 0;
+        double[] intervals; // кол-во элементов в интервале гистограммы
+        int N = 0, K = 0, M = 0; // кол-во элементов выборки, интервалов гистограммы, интервалов аппроксимации
 
-        double min, max, difference;
-        bool isGistogramm = false;
+        double min, max, difference; // параметры для построения гистограммы,
+        bool isGistogramm = false; // чать характеристик считается не по выборке, а по гистограмме, нужен флаг ее наличия
         Microsoft.Office.Interop.Excel.Application _ex = new Microsoft.Office.Interop.Excel.Application();
+
+        // Путь к файлу (измените на свой)
+        string filePath = "C:\\Users\\user\\source\\repos\\WindowsFormsTrvr\\WindowsFormsTrvr\\report.txt";
 
         public Form1()
         {
             InitializeComponent();
         }
 
+        // Очистка  всех полей информации при создании новой выборки
         private void Clear_All_Info()
         {
             chiVal1.Text = "---";
@@ -43,7 +47,7 @@ namespace WindowsFormsTrvr
             K4.Text = "---";
 
 
-            recomended_intervals.Text = "---";
+            rec.Text = "---";
             label9.Text = "---";
             label10.Text = "---";
             label11.Text = "---";
@@ -89,29 +93,34 @@ namespace WindowsFormsTrvr
         private void Button1_Click(object sender, EventArgs e)
         {
             N = int.Parse(textBox1.Text);
-            
+
+            // проверка объема распределения
             if (N <= 0)
             {
                 MessageBox.Show("Введите корректный объем выборки!");
                 return;
             }
 
-            Clear_All_Info();
-            chart1.Series[0].Points.Clear();
-            Random r = new Random();
-            recomended_intervals.Text = Math.Floor(1 + Math.Log((double)N, 2f)).ToString();
-            array = new double[N];
-            
+            // проверка вида распределения
             if (checkedListBox1.CheckedItems.Count == 0)
             {
                 MessageBox.Show("Выберите тип распределения!");
-            }
-            else
-            {
-                isGistogramm = false;
+                return;
             }
 
-            // равномерное
+            // очистка от информации прошлой выборки
+            Clear_All_Info();
+            chart1.Series[0].Points.Clear();
+            isGistogramm = false;
+
+            // создание переменных
+            Random r = new Random();
+            array = new double[N];
+
+            // рекомендуемое количество интервалов гистограммы
+            rec.Text = Math.Floor(1 + Math.Log((double)N, 2f)).ToString();
+
+            // равномерное распределение
             if (checkedListBox1.SelectedIndex == 0)
             {
                 for (int i = 0; i < array.Length; i++)
@@ -120,19 +129,18 @@ namespace WindowsFormsTrvr
                 }
             }
 
-            // нормальное распределение
+            // нормальное распределение + доверительные интервалы характеристик
             if (checkedListBox1.SelectedIndex == 1)
             {
-
-                // Получаем параметры распределения из TextBox
                 double alpha15 = 0.15;
                 double alpha05 = 0.05;
 
+                // Получаем параметры распределения из TextBox
                 double mu_setted = double.Parse(textBox4.Text);          // Мат. ожидание
                 double sigma_setted = double.Parse(textBox5.Text);       // Среднеквадратичное отклонение
-                double dispersia_setted = Math.Pow(sigma_setted, 2);
+                double dispersia_setted = Math.Pow(sigma_setted, 2);     // Дисперсия
 
-                double srednee = 0, kvadr_otklon = 0, dispersia = 0; // выборочное среднее
+                double srednee = 0, kvadr_otklon = 0, dispersia = 0; // выборочное среднее, квадратное отклонение, выборочная дисперсия
 
                 double margine; // эпсилон для доверительного интервала
                 double left_krit, right_krit; // границы доверительного интервала
@@ -149,9 +157,10 @@ namespace WindowsFormsTrvr
 
                     // Масштабирование
                     array[i] = mu_setted + sigma_setted * (sum - 20) / Math.Sqrt(40 / 12.0);
-                    srednee += array[i];
+                    srednee += array[i]; // сумма всех элементов выборки
                 }
                 srednee /= N; // выборочное среднее
+
 
                 for (int i = 0; i < array.Length; i++)
                 {
@@ -227,9 +236,6 @@ namespace WindowsFormsTrvr
                 S8.Text = dispersia_setted.ToString("F4");
                 C8.Text = (left_krit <= dispersia_setted && dispersia_setted <= right_krit) ? "Да" : "Нет";
 
-                // Путь к файлу (измените на свой)
-                string filePath = "C:\\Users\\user\\source\\repos\\WindowsFormsTrvr\\WindowsFormsTrvr\\report.txt";
-
                 // Запись в файл
                 using (StreamWriter writer = new StreamWriter(filePath))
                 {
@@ -271,28 +277,30 @@ namespace WindowsFormsTrvr
                 }
             }
 
-            // заданное распределение (0.5х)
+            // заданное распределение (0.5х) + хи квадрат (неправильное, для анализа точности ступенчатой аппроксимации)
             if (checkedListBox1.SelectedIndex == 2)
             {
                 M = int.Parse(textBox2.Text); // кол-во интервалов
+
+                // проверка кол-ва интервалов
                 if (M <= 0)
                 {
                     MessageBox.Show("Введите корректное количество интервалов апроксимации!");
                     return;
                 }
 
-                double[] borders_array = new double[M]; // правые границы интервалов
-                double[] freq_array = new double[M]; // наблюдаемые частоты (количество попаданий)
+                double[] borders_array = new double[M]; // правые границы интервалов аппроксимации
+                double[] freq_array = new double[M]; // наблюдаемые частоты (количество попаданий в интервалы аппроксимации)
 
                 // 1. Расчёт границ интервалов (равновероятных)
                 double theor_prob = 1.0 / M; // теоретическая вероятность для каждого интервала
-                double pos_x = theor_prob;
+                double pos_x = theor_prob; // начальный квантиль функции распределения
 
                 for (int i = 0; i < M; i++)
                 {
-                    borders_array[i] = 2 * Math.Sqrt(pos_x);
-                    pos_x += theor_prob;
-                    freq_array[i] = 0;
+                    borders_array[i] = 2 * Math.Sqrt(pos_x); // получение правой границы интервала аппроксимации 
+                    pos_x += theor_prob; // получение следующего квантиля
+                    freq_array[i] = 0; // зануление массива наблюдаемых частот (для последующей работы)
                 }
 
                 // 2. Генерация выборки и подсчёт частот
@@ -303,11 +311,11 @@ namespace WindowsFormsTrvr
                     double local_right = borders_array[interval];
 
                     double c = r.NextDouble() * (local_right - local_left) + local_left;
-                    array[i] = c;
-                    freq_array[interval]++;
+                    array[i] = c; // получение элемента
+                    freq_array[interval]++; // подсчет частот
                 }
 
-                // 3. Расчёт χ²-статистики
+                // 3. Расчёт χ²-статистики (неправильная, для анализа точности ступенчатой аппроксимации)
                 double kriteri_pirsona = 0, krit_value_pirsona, alpha05 = 0.05, alpha01 = 0.01;
                 double expected_freq = N * theor_prob; // теоретическая частота для каждого интервала
 
@@ -372,6 +380,7 @@ namespace WindowsFormsTrvr
                 right = (isLastInterval ? max : right + difference);
             }
 
+            // Хи квадрат, если отображается 0,5х (корректная, для анализа точности аппроксимации функции 0,5х)
             if (checkedListBox1.SelectedIndex == 2)
             {
                 double kriteri_pirsona = 0, krit_value_pirsona, alpha05 = 0.05, alpha01 = 0.01;
@@ -479,6 +488,7 @@ namespace WindowsFormsTrvr
 
         }
 
+        // удобство интерфейса
         private void CheckedListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             for (int i = 0; i < checkedListBox1.Items.Count; i++)
