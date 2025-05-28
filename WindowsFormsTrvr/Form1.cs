@@ -16,8 +16,8 @@ namespace WindowsFormsTrvr
 {
     public partial class Form1: Form
     {
-        double[] array;
-        double[] intervals;
+        double[] array; // массив выборки
+        double[] intervals; // кол-во элементов в интервале
         int N = 0, K = 0, M = 0;
 
         double min, max, difference;
@@ -31,8 +31,18 @@ namespace WindowsFormsTrvr
 
         private void Clear_All_Info()
         {
-            label17.Text = "---";
-            label19.Text = "---";
+            chiVal1.Text = "---";
+            chiVal2.Text = "---";
+            KV1.Text = "---";
+            KV2.Text = "---";
+            KV3.Text = "---";
+            KV4.Text = "---";
+            K1.Text = "---";
+            K2.Text = "---";
+            K3.Text = "---";
+            K4.Text = "---";
+
+
             recomended_intervals.Text = "---";
             label9.Text = "---";
             label10.Text = "---";
@@ -306,17 +316,17 @@ namespace WindowsFormsTrvr
                     kriteri_pirsona += Math.Pow(freq_array[i] - expected_freq, 2) / expected_freq;
                 }
 
-                label17.Text = kriteri_pirsona.ToString("F4"); // вывод с 4 знаками после запятой
+                chiVal1.Text = kriteri_pirsona.ToString("F4"); // вывод с 4 знаками после запятой
 
                 krit_value_pirsona = _ex.WorksheetFunction.ChiInv(alpha05, M - 1);
-                label39.Text = krit_value_pirsona.ToString("F4");
-                if (kriteri_pirsona <= krit_value_pirsona) label36.Text = "Да";
-                else label36.Text = "Нет";
+                KV1.Text = krit_value_pirsona.ToString("F4");
+                if (kriteri_pirsona <= krit_value_pirsona) K1.Text = "Да";
+                else K1.Text = "Нет";
 
                 krit_value_pirsona = _ex.WorksheetFunction.ChiInv(alpha01, M - 1);
-                label43.Text = krit_value_pirsona.ToString("F4");
-                if (kriteri_pirsona <= krit_value_pirsona) label42.Text = "Да";
-                else label42.Text = "Нет";
+                KV2.Text = krit_value_pirsona.ToString("F4");
+                if (kriteri_pirsona <= krit_value_pirsona) K2.Text = "Да";
+                else K2.Text = "Нет";
             }
 
         }
@@ -359,7 +369,7 @@ namespace WindowsFormsTrvr
                 chart1.Series[0].Points.AddXY(left, (double)count / N / difference);
 
                 left = right;
-                right += difference;
+                right = (isLastInterval ? max : right + difference);
             }
 
             if (checkedListBox1.SelectedIndex == 2)
@@ -372,17 +382,17 @@ namespace WindowsFormsTrvr
                     kriteri_pirsona += Math.Pow(intervals[i] - expected_freq[i], 2) / expected_freq[i];
                 }
 
-                label19.Text = kriteri_pirsona.ToString("F4");
+                chiVal2.Text = kriteri_pirsona.ToString("F4");
 
                 krit_value_pirsona = _ex.WorksheetFunction.ChiInv(alpha05, K - 1);
-                label41.Text = krit_value_pirsona.ToString("F4");
-                if (kriteri_pirsona <= krit_value_pirsona) label37.Text = "Да";
-                else label37.Text = "Нет";
+                KV3.Text = krit_value_pirsona.ToString("F4");
+                if (kriteri_pirsona <= krit_value_pirsona) K3.Text = "Да";
+                else K3.Text = "Нет";
 
                 krit_value_pirsona = _ex.WorksheetFunction.ChiInv(alpha01, K - 1);
-                label45.Text = krit_value_pirsona.ToString("F4");
-                if (kriteri_pirsona <= krit_value_pirsona) label44.Text = "Да";
-                else label44.Text = "Нет";
+                KV4.Text = krit_value_pirsona.ToString("F4");
+                if (kriteri_pirsona <= krit_value_pirsona) K4.Text = "Да";
+                else K4.Text = "Нет";
             }
         }
 
