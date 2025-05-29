@@ -35,6 +35,8 @@ namespace WindowsFormsTrvr
         // Очистка  всех полей информации при создании новой выборки
         private void Clear_All_Info()
         {
+            info.Text = "---";
+            
             chiVal1.Text = "---";
             chiVal2.Text = "---";
             KV1.Text = "---";
@@ -127,6 +129,8 @@ namespace WindowsFormsTrvr
                 {
                     array[i] = r.NextDouble();
                 }
+
+                info.Text = $"Равномерное распределение на (0; 1).\n";
             }
 
             // нормальное распределение + доверительные интервалы характеристик
@@ -136,15 +140,16 @@ namespace WindowsFormsTrvr
                 double alpha05 = 0.05;
 
                 // Получаем параметры распределения из TextBox
-                double mu_setted = double.Parse(textBox4.Text);          // Мат. ожидание
-                double sigma_setted = double.Parse(textBox5.Text);       // Среднеквадратичное отклонение
-                double dispersia_setted = Math.Pow(sigma_setted, 2);     // Дисперсия
+                double mu_setted = double.Parse(textBox4.Text);                  // Мат. ожидание
+                double sigma_setted = Math.Abs(double.Parse(textBox5.Text));    // Среднеквадратичное отклонение
+                double dispersia_setted = Math.Pow(sigma_setted, 2);           // Дисперсия
 
                 double srednee = 0, kvadr_otklon = 0, dispersia = 0; // выборочное среднее, квадратное отклонение, выборочная дисперсия
 
                 double margine; // эпсилон для доверительного интервала
                 double left_krit, right_krit; // границы доверительного интервала
 
+                info.Text = $"Нормальное распределение: мат.ожидание {mu_setted}, среднеквадратичное отклонение {sigma_setted}.\n";
 
                 for (int i = 0; i < array.Length; i++)
                 {
@@ -289,6 +294,8 @@ namespace WindowsFormsTrvr
                     return;
                 }
 
+                info.Text = $"Распределение f(x) = 0.5x (0; 2).\n";
+
                 double[] borders_array = new double[M]; // правые границы интервалов аппроксимации
                 double[] freq_array = new double[M]; // наблюдаемые частоты (количество попаданий в интервалы аппроксимации)
 
@@ -348,6 +355,9 @@ namespace WindowsFormsTrvr
                 MessageBox.Show("Введите корректное количество интервалов гистограммы!");
                 return;
             }
+
+            info_gist.Text = "Кол-во интервалов гистограммы: " + K.ToString();
+
             intervals = new double[K];
             double[] expected_freq = new double[K];
             isGistogramm = true;
