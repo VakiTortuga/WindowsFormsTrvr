@@ -36,6 +36,7 @@ namespace WindowsFormsTrvr
         private void Clear_All_Info()
         {
             info.Text = "---";
+            info_gist.Text = "---";
             
             chiVal1.Text = "---";
             chiVal2.Text = "---";
@@ -294,7 +295,7 @@ namespace WindowsFormsTrvr
                     return;
                 }
 
-                info.Text = $"Распределение f(x) = 0.5x (0; 2).\n";
+                info.Text = $"Распределение f(x) = 0.5x (0; 2). Кол-во интервалов аппроксимации {M}\n";
 
                 double[] borders_array = new double[M]; // правые границы интервалов аппроксимации
                 double[] freq_array = new double[M]; // наблюдаемые частоты (количество попаданий в интервалы аппроксимации)
@@ -356,7 +357,7 @@ namespace WindowsFormsTrvr
                 return;
             }
 
-            info_gist.Text = "Кол-во интервалов гистограммы: " + K.ToString();
+            info_gist.Text = $"Кол-во интервалов гистограммы: {K}";
 
             intervals = new double[K];
             double[] expected_freq = new double[K];

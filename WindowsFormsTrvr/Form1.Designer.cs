@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -127,21 +127,22 @@
             this.label50 = new System.Windows.Forms.Label();
             this.info = new System.Windows.Forms.Label();
             this.info_gist = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
             // chart1
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
             this.chart1.Location = new System.Drawing.Point(12, 10);
             this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chart1.Series.Add(series2);
             this.chart1.Size = new System.Drawing.Size(669, 479);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
@@ -348,7 +349,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(17, 564);
+            this.label16.Location = new System.Drawing.Point(17, 577);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(267, 13);
             this.label16.TabIndex = 23;
@@ -357,7 +358,7 @@
             // chiVal1
             // 
             this.chiVal1.AutoSize = true;
-            this.chiVal1.Location = new System.Drawing.Point(308, 564);
+            this.chiVal1.Location = new System.Drawing.Point(308, 577);
             this.chiVal1.Name = "chiVal1";
             this.chiVal1.Size = new System.Drawing.Size(16, 13);
             this.chiVal1.TabIndex = 24;
@@ -366,7 +367,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(17, 614);
+            this.label18.Location = new System.Drawing.Point(17, 627);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(256, 26);
             this.label18.TabIndex = 25;
@@ -375,7 +376,7 @@
             // chiVal2
             // 
             this.chiVal2.AutoSize = true;
-            this.chiVal2.Location = new System.Drawing.Point(308, 618);
+            this.chiVal2.Location = new System.Drawing.Point(308, 631);
             this.chiVal2.Name = "chiVal2";
             this.chiVal2.Size = new System.Drawing.Size(16, 13);
             this.chiVal2.TabIndex = 26;
@@ -848,7 +849,7 @@
             // label35
             // 
             this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(495, 520);
+            this.label35.Location = new System.Drawing.Point(495, 533);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(69, 26);
             this.label35.TabIndex = 37;
@@ -857,7 +858,7 @@
             // K1
             // 
             this.K1.AutoSize = true;
-            this.K1.Location = new System.Drawing.Point(495, 554);
+            this.K1.Location = new System.Drawing.Point(495, 567);
             this.K1.Name = "K1";
             this.K1.Size = new System.Drawing.Size(16, 13);
             this.K1.TabIndex = 38;
@@ -866,7 +867,7 @@
             // K3
             // 
             this.K3.AutoSize = true;
-            this.K3.Location = new System.Drawing.Point(495, 605);
+            this.K3.Location = new System.Drawing.Point(495, 618);
             this.K3.Name = "K3";
             this.K3.Size = new System.Drawing.Size(16, 13);
             this.K3.TabIndex = 39;
@@ -875,7 +876,7 @@
             // label38
             // 
             this.label38.AutoSize = true;
-            this.label38.Location = new System.Drawing.Point(395, 520);
+            this.label38.Location = new System.Drawing.Point(395, 533);
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(71, 26);
             this.label38.TabIndex = 37;
@@ -884,7 +885,7 @@
             // KV1
             // 
             this.KV1.AutoSize = true;
-            this.KV1.Location = new System.Drawing.Point(395, 554);
+            this.KV1.Location = new System.Drawing.Point(395, 567);
             this.KV1.Name = "KV1";
             this.KV1.Size = new System.Drawing.Size(16, 13);
             this.KV1.TabIndex = 38;
@@ -893,7 +894,7 @@
             // KV3
             // 
             this.KV3.AutoSize = true;
-            this.KV3.Location = new System.Drawing.Point(395, 605);
+            this.KV3.Location = new System.Drawing.Point(395, 618);
             this.KV3.Name = "KV3";
             this.KV3.Size = new System.Drawing.Size(16, 13);
             this.KV3.TabIndex = 39;
@@ -902,7 +903,7 @@
             // K2
             // 
             this.K2.AutoSize = true;
-            this.K2.Location = new System.Drawing.Point(495, 576);
+            this.K2.Location = new System.Drawing.Point(495, 589);
             this.K2.Name = "K2";
             this.K2.Size = new System.Drawing.Size(16, 13);
             this.K2.TabIndex = 38;
@@ -911,7 +912,7 @@
             // KV2
             // 
             this.KV2.AutoSize = true;
-            this.KV2.Location = new System.Drawing.Point(395, 576);
+            this.KV2.Location = new System.Drawing.Point(395, 589);
             this.KV2.Name = "KV2";
             this.KV2.Size = new System.Drawing.Size(16, 13);
             this.KV2.TabIndex = 38;
@@ -920,7 +921,7 @@
             // K4
             // 
             this.K4.AutoSize = true;
-            this.K4.Location = new System.Drawing.Point(495, 627);
+            this.K4.Location = new System.Drawing.Point(495, 640);
             this.K4.Name = "K4";
             this.K4.Size = new System.Drawing.Size(16, 13);
             this.K4.TabIndex = 39;
@@ -929,7 +930,7 @@
             // KV4
             // 
             this.KV4.AutoSize = true;
-            this.KV4.Location = new System.Drawing.Point(395, 627);
+            this.KV4.Location = new System.Drawing.Point(395, 640);
             this.KV4.Name = "KV4";
             this.KV4.Size = new System.Drawing.Size(16, 13);
             this.KV4.TabIndex = 39;
@@ -938,7 +939,7 @@
             // label46
             // 
             this.label46.AutoSize = true;
-            this.label46.Location = new System.Drawing.Point(589, 520);
+            this.label46.Location = new System.Drawing.Point(589, 533);
             this.label46.Name = "label46";
             this.label46.Size = new System.Drawing.Size(67, 26);
             this.label46.TabIndex = 37;
@@ -947,7 +948,7 @@
             // label47
             // 
             this.label47.AutoSize = true;
-            this.label47.Location = new System.Drawing.Point(589, 554);
+            this.label47.Location = new System.Drawing.Point(589, 567);
             this.label47.Name = "label47";
             this.label47.Size = new System.Drawing.Size(28, 13);
             this.label47.TabIndex = 37;
@@ -956,7 +957,7 @@
             // label48
             // 
             this.label48.AutoSize = true;
-            this.label48.Location = new System.Drawing.Point(589, 576);
+            this.label48.Location = new System.Drawing.Point(589, 589);
             this.label48.Name = "label48";
             this.label48.Size = new System.Drawing.Size(28, 13);
             this.label48.TabIndex = 37;
@@ -965,7 +966,7 @@
             // label49
             // 
             this.label49.AutoSize = true;
-            this.label49.Location = new System.Drawing.Point(589, 605);
+            this.label49.Location = new System.Drawing.Point(589, 618);
             this.label49.Name = "label49";
             this.label49.Size = new System.Drawing.Size(28, 13);
             this.label49.TabIndex = 37;
@@ -974,7 +975,7 @@
             // label50
             // 
             this.label50.AutoSize = true;
-            this.label50.Location = new System.Drawing.Point(589, 627);
+            this.label50.Location = new System.Drawing.Point(589, 640);
             this.label50.Name = "label50";
             this.label50.Size = new System.Drawing.Size(28, 13);
             this.label50.TabIndex = 37;
@@ -998,11 +999,20 @@
             this.info_gist.TabIndex = 36;
             this.info_gist.Text = "---";
             // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(308, 533);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(54, 26);
+            this.label17.TabIndex = 37;
+            this.label17.Text = "значение\r\nкритерия";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1249, 650);
+            this.ClientSize = new System.Drawing.Size(1249, 661);
             this.Controls.Add(this.KV4);
             this.Controls.Add(this.KV3);
             this.Controls.Add(this.K4);
@@ -1011,6 +1021,7 @@
             this.Controls.Add(this.KV1);
             this.Controls.Add(this.K2);
             this.Controls.Add(this.K1);
+            this.Controls.Add(this.label17);
             this.Controls.Add(this.label38);
             this.Controls.Add(this.label50);
             this.Controls.Add(this.label49);
@@ -1205,6 +1216,7 @@
         private System.Windows.Forms.Label label50;
         private System.Windows.Forms.Label info;
         private System.Windows.Forms.Label info_gist;
+        private System.Windows.Forms.Label label17;
     }
 }
 
